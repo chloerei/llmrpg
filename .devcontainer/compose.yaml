@@ -7,7 +7,7 @@ services:
       dockerfile: .devcontainer/Dockerfile
 
     volumes:
-    - ../..:/workspaces:cached
+      - ..:/rails:cached
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -18,15 +18,15 @@ services:
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
     depends_on:
-    - postgres
+      - postgres
 
   postgres:
-    image: postgres:16.1
+    image: postgres:17
     restart: unless-stopped
     networks:
-    - default
+      - default
     volumes:
-    - postgres-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     environment:
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: postgres
