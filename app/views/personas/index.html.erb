@@ -1,0 +1,19 @@
+<% content_for :title, "Personas" %>
+
+<p style="color: green"><%= notice %></p>
+
+<div class="flex items-center">
+  <div class="grow">
+    <div class="text-lg font-medium">
+      Personas
+    </div>
+  </div>
+
+  <a href="<%= new_persona_path %>" class="btn btn-soft">
+    New Persona
+  </a>
+</div>
+
+<ul class="list mt-4">
+  <%= render @personas %>
+</ul>

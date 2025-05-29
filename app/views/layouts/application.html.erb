@@ -23,6 +23,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="navbar">
+      <div class="flex-1 flex items-center">
+        <a href="/" class="btn btn-ghost text-xl">
+          Roleplay
+        </a>
+
+        <ul class="menu menu-horizontal px-1">
+          <li>
+            <a href="<%= personas_path %>">Persona</a>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-none">
+      </div>
+    </div>
+    <div class="max-w-3xl mx-auto p-4">
+      <%= yield %>
+    </div>
   </body>
 </html>
