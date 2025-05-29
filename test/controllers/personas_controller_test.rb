@@ -3,6 +3,7 @@ require "test_helper"
 class PersonasControllerTest < ActionDispatch::IntegrationTest
   setup do
     @persona = personas(:one)
+    sign_in_as users(:one)
   end
 
   test "should get index" do
