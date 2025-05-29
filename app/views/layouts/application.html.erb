@@ -31,10 +31,12 @@
 
         <ul class="menu menu-horizontal px-1">
           <li>
-            <a href="<%= personas_path %>">Personas</a>
+            <a href="<%= personas_path %>" class="<%= "menu-active" if request.path.start_with?("/personas") %>">
+              Personas
+            </a>
           </li>
           <li>
-            <a href="<%= characters_path %>">
+            <a href="<%= characters_path %>" class="<%= "menu-active" if request.path.start_with?("/characters") %>">
               Characters
             </a>
           </li>
