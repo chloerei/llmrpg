@@ -1,6 +1,6 @@
-class CreatePersonas < ActiveRecord::Migration[8.0]
+class CreateCharacters < ActiveRecord::Migration[8.0]
   def change
-    create_table :personas do |t|
+    create_table :characters do |t|
       t.references :user, null: false, foreign_key: true
 
       t.string :name, null: false
