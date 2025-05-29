@@ -47,6 +47,6 @@ class PersonasController < ApplicationController
   end
 
   def persona_params
-    params.expect(persona: [ :name, :description ])
+    params.expect(persona: [ :avatar, :name, :description ])
   end
 end

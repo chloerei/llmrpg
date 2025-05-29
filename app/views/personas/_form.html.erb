@@ -13,6 +13,28 @@
 
   <fieldset class="fieldset">
     <legend class="fieldset-legend">
+      Avatar
+    </legend>
+
+    <% if persona.avatar.attached? %>
+      <div class="avatar">
+        <div class="w-20 rounded-full">
+          <%= image_tag persona.avatar.variant(:thumb) %>
+        </div>
+      </div>
+    <% else %>
+      <div class="avatar avatar-placeholder">
+        <div class="bg-base-300 text-base-content w-20 rounded-full">
+          <span class="text-3xl"><%= persona.name&.first %></span>
+        </div>
+      </div>
+    <% end %>
+
+    <%= form.file_field :avatar, class: "file-input" %>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">
       Name
     </legend>
     <%= form.text_field :name, class: "input" %>

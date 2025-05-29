@@ -1,5 +1,19 @@
 <li class="list-row">
-  <div></div>
+  <div>
+    <% if persona.avatar.attached? %>
+      <div class="avatar">
+        <div class="w-10 rounded-full">
+          <%= image_tag persona.avatar.variant(:thumb) %>
+        </div>
+      </div>
+    <% else %>
+      <div class="avatar avatar-placeholder">
+        <div class="bg-base-300 text-base-content w-10 rounded-full">
+          <span class="text-xl"><%= persona.name&.first %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
   <div>
     <a href="<%= persona_path(persona) %>">
       <div class="">
