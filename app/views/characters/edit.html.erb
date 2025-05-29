@@ -1,0 +1,23 @@
+<% content_for :title, "Editing character" %>
+
+<div class="breadcrumbs text-sm">
+  <ul>
+    <li>
+      <a href="<%= characters_path %>">
+        Characters
+      </a>
+    </li>
+    <li>
+      <a href="<%= character_path(@character) %>">
+        <%= @character.name %>
+      </a>
+    </li>
+    <li>
+      Edit character
+    </li>
+  </ul>
+</div>
+
+<div class="mt-4">
+  <%= render "form", character: @character %>
+</div>

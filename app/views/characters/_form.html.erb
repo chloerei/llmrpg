@@ -1,10 +1,10 @@
-<%= form_with(model: persona) do |form| %>
-  <% if persona.errors.any? %>
+<%= form_with(model: character) do |form| %>
+  <% if character.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(persona.errors.count, "error") %> prohibited this persona from being saved:</h2>
+      <h2><%= pluralize(character.errors.count, "error") %> prohibited this character from being saved:</h2>
 
       <ul>
-        <% persona.errors.each do |error| %>
+        <% character.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -16,7 +16,7 @@
       Avatar
     </legend>
 
-    <%= render "shared/avatar", avatar: persona.avatar, name: persona.name, size: :large %>
+    <%= render "shared/avatar", avatar: character.avatar, name: character.name, size: :large %>
 
     <%= form.file_field :avatar, class: "file-input" %>
   </fieldset>
@@ -37,7 +37,7 @@
 
   <div class="mt-4">
     <button type="submit" class="btn btn-primary">
-      <%= persona.new_record? ? "Create" : "Update" %> Persona
+      <%= character.new_record? ? "Create" : "Update" %> Character
     </button>
   </div>
 <% end %>

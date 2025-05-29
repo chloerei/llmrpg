@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Characters" %>
+
+<div class="flex items-center">
+  <div class="grow">
+    <div class="text-lg font-medium">
+      Characters
+    </div>
+  </div>
+
+  <a href="<%= new_character_path %>" class="btn btn-soft">
+    New Character
+  </a>
+</div>
+
+<ul class="list">
+  <%= render @characters %>
+</ul>

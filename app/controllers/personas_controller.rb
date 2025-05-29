@@ -2,7 +2,7 @@ class PersonasController < ApplicationController
   before_action :set_persona, only: %i[ show edit update destroy ]
 
   def index
-    @personas = Persona.all
+    @personas = Current.user.personas.order(id: :desc)
   end
 
   def show
