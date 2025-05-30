@@ -54,8 +54,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_023501) do
 
   create_table "conversations", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "persona_id", null: false
-    t.bigint "character_id", null: false
+    t.bigint "persona_id"
+    t.bigint "character_id"
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
@@ -105,8 +105,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_023501) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "characters", "users"
-  add_foreign_key "conversations", "characters"
-  add_foreign_key "conversations", "personas"
   add_foreign_key "conversations", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "personas", "users"

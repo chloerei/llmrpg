@@ -1,0 +1,53 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="breadcrumbs">
+  <ul>
+    <li>
+      <a href="<%= conversations_path %>">
+        Conversations
+      </a>
+    </li>
+    <li>
+      <%= @conversation.name.presence || "Untitled" %>
+    </li>
+  </ul>
+</div>
+
+<div class="avatar-group -space-x-5">
+  <%= render "shared/avatar", avatar: @conversation.persona.avatar, name: @conversation.persona.name %>
+  <%= render "shared/avatar", avatar: @conversation.character.avatar, name: @conversation.character.name %>
+</div>
+
+<div id="messages" class="min-h-screen mt-4">
+  <div class="chat chat-end">
+    <div class="chat-image">
+      <%= render "shared/avatar", avatar: @conversation.persona.avatar, name: @conversation.persona.name %>
+    </div>
+    <div class="chat-bubble">hello</div>
+  </div>
+  <div class="chat chat-start">
+    <div class="chat-image">
+      <%= render "shared/avatar", avatar: @conversation.character.avatar, name: @conversation.character.name %>
+    </div>
+    <div class="chat-bubble">hello</div>
+  </div>
+</div>
+
+<div class="sticky bottom-0">
+  <div class="max-w-screen-lg mx-auto pb-4">
+    <div class="card bg-base-300 p-4">
+      <textarea class="textarea w-full" placeholder="Message" rows="3"></textarea>
+      <div class="flex mt-4">
+        <div class="grow">
+        </div>
+        <div class="ml-2">
+          <button class="btn btn-primary btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

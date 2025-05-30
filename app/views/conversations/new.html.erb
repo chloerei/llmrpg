@@ -1,0 +1,20 @@
+<% content_for :title, "New conversation" %>
+
+<div class="breadcrumbs">
+  <ul>
+    <li>
+      <a href="<%= conversations_path %>">
+        Conversations
+      </a>
+    </li>
+    <li>
+      New conversation
+    </li>
+  </ul>
+</div>
+
+<div class="mt-4">
+  <h1 class="text-xl font-medium">New conversation</h1>
+
+  <%= render "form", conversation: @conversation %>
+</div>

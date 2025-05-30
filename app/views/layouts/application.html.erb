@@ -40,6 +40,11 @@
               Characters
             </a>
           </li>
+          <li>
+            <a href="<%= conversations_path %>" class="<%= "menu-active" if request.path.start_with?("/conversations") %>">
+              Conversations
+            </a>
+          </li>
         </ul>
       </div>
       <div class="flex-none">

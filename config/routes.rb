@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :conversations
   root "home#index"
 
   resource :session
