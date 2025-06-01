@@ -6,9 +6,9 @@ class Conversations::MessagesController < ApplicationController
     @message.creator = @conversation.persona
 
     if @message.save
-      redirect_to @conversation, notice: "Message was successfully created."
+      render turbo_stream: turbo_stream.replace("new-message-form", partial: "conversations/messages/form", locals: { message: @conversation.messages.new })
     else
-      render "conversations/show", status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace("new-message-form", partial: "conversations/messages/form", locals: { message: @message })
     end
   end
 

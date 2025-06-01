@@ -26,5 +26,11 @@ module Roleplay
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.default_url_options = {
+      host: ENV.fetch("HOST", "localhost:3000")
+    }
   end
 end
+
+Rails.application.routes.default_url_options = Rails.application.config.default_url_options

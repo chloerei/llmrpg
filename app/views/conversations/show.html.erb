@@ -22,23 +22,12 @@
   <%= render partial: "conversations/messages/message", collection: @conversation.messages %>
 </div>
 
+<%= turbo_stream_from @conversation %>
+
 <div class="sticky bottom-0">
   <div class="max-w-screen-lg mx-auto pb-4">
     <div class="card bg-base-300 p-4">
-      <%= form_with model: Message.new, url: conversation_messages_path(@conversation) do |form| %>
-        <%= form.text_area :content, class: "textarea w-full", placeholder: "Message" %>
-        <div class="flex mt-4">
-          <div class="grow">
-          </div>
-          <div class="ml-2">
-            <button type="submit" class="btn btn-primary btn-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      <% end %>
+      <%= render "conversations/messages/form", message: @conversation.messages.new %>
     </div>
   </div>
 </div>
