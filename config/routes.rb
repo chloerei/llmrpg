@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :conversations
   root "home#index"
 
   resource :session
@@ -7,6 +6,12 @@ Rails.application.routes.draw do
 
   resources :personas
   resources :characters
+
+  resources :conversations do
+    scope module: :conversations do
+      resources :messages
+    end
+  end
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

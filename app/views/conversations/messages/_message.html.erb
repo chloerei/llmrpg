@@ -1,0 +1,10 @@
+<%
+  position_class = message.creator_type == "Persona" ? "chat-end" : "chat-start"
+%>
+
+<div class="chat <%= position_class %>">
+  <div class="chat-image">
+    <%= render "shared/avatar", avatar: message.creator.avatar, name: message.creator.name %>
+  </div>
+  <div class="chat-bubble"><%= message.content %></div>
+</div>
