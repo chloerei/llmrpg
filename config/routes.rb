@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   resources :conversations do
     scope module: :conversations do
-      resources :messages
+      resources :messages do
+        member do
+          get :completion
+        end
+      end
     end
   end
 
