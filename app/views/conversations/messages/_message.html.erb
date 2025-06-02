@@ -2,9 +2,15 @@
   position_class = message.creator_type == "Persona" ? "chat-end" : "chat-start"
 %>
 
-<div class="chat <%= position_class %>">
+<div class="chat <%= position_class %>" data-controller="message" data-message-id="<%= message.id %>" data-message-status="<%= message.status %>">
   <div class="chat-image">
     <%= render "shared/avatar", avatar: message.creator.avatar, name: message.creator.name %>
   </div>
-  <div class="chat-bubble"><%= message.content %></div>
+  <div class="chat-bubble">
+    <% if message.pending? and message.content.nil? %>
+      <span class="loading loading-dots loading-sm"></span>
+    <% else %>
+      <%= message.content %>
+    <% end %>
+  </div>
 </div>

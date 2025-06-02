@@ -4,8 +4,11 @@ class Conversations::MessagesController < ApplicationController
   def create
     @message = @conversation.messages.new(message_params)
     @message.creator = @conversation.persona
+    @message.status = :completed
 
     if @message.save
+      # TODO: multiple characters, who to response?
+      @conversation.messages.create(creator: @conversation.character)
       render turbo_stream: turbo_stream.replace("new-message-form", partial: "conversations/messages/form", locals: { message: @conversation.messages.new })
     else
       render turbo_stream: turbo_stream.replace("new-message-form", partial: "conversations/messages/form", locals: { message: @message })

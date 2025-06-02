@@ -4,5 +4,8 @@ class Message < ApplicationRecord
 
   broadcasts_to :conversation, partial: "conversations/messages/message"
 
-  validates :content, presence: true
+  enum :status, {
+    pending: 0,
+    completed: 1
+  }
 end
