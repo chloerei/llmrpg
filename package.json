@@ -14,6 +14,8 @@
     "@rails/request.js": "^0.0.12",
     "@tailwindcss/cli": "^4.1.7",
     "daisyui": "^5.0.38",
+    "dompurify": "^3.2.6",
+    "marked": "^15.0.12",
     "tailwindcss": "^4.1.7"
   }
 }

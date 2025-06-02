@@ -14,7 +14,7 @@
     <% if message.pending? and message.content.nil? %>
       <span class="loading loading-dots loading-sm"></span>
     <% else %>
-      <%= message.content %>
+      <%= markdown_render message.content %>
     <% end %>
   </div>
 </div>

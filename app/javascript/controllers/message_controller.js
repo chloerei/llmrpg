@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
-import { post } from "@rails/request.js"
+import { marked } from "marked"
+import DOMPurify from "dompurify"
 
 // Connects to data-controller="message"
 export default class extends Controller {
@@ -27,7 +28,9 @@ export default class extends Controller {
       console.log("Received message:", event.data)
       const data = JSON.parse(event.data)
       content += data.content
-      this.contentTarget.textContent = content
+      this.contentTarget.innerHTML = DOMPurify.sanitize(
+        marked.parse(content)
+      )
 
       if (data.done) {
         eventSource.close()
