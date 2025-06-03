@@ -8,4 +8,12 @@ class Message < ApplicationRecord
     pending: 0,
     completed: 1
   }
+
+  after_create :enqueue_completion_job
+
+  def enqueue_completion_job
+    if status == "pending"
+      Message::CompletionJob.perform_later(self)
+    end
+  end
 end

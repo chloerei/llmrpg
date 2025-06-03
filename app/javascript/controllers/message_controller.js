@@ -13,7 +13,7 @@ export default class extends Controller {
 
   connect() {
     if (this.statusValue == "pending") {
-      this.requestCompletion()
+      // this.requestCompletion()
     }
   }
 

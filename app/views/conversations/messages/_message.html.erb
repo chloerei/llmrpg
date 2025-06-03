@@ -2,7 +2,7 @@
   position_class = message.creator_type == "Persona" ? "chat-end" : "chat-start"
 %>
 
-<div class="chat <%= position_class %>"
+<div id="<%= dom_id(message) %>" class="chat <%= position_class %>"
   data-controller="message"
   data-message-status-value="<%= message.status %>"
   data-message-completion-url-value="<%= completion_conversation_message_path(message.conversation, message) %>"
