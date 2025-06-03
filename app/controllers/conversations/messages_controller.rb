@@ -1,6 +1,4 @@
 class Conversations::MessagesController < ApplicationController
-  include ActionController::Live
-
   before_action :set_conversation
 
   def create
@@ -20,6 +18,31 @@ class Conversations::MessagesController < ApplicationController
   def completion
     @message = @conversation.messages.find(params[:id])
 
+    response.headers["Content-Type"] = "text/event-stream"
+
+    response.headers["rack.hijack"] = proc do |stream|
+      Thread.new do
+        perform_completion(@message, stream)
+      end
+    end
+
+    head :ok
+  end
+
+  private
+
+  def set_conversation
+    @conversation = Current.user.conversations.find(params[:conversation_id])
+  end
+
+  def message_params
+    params.require(:message).permit(:content)
+  end
+
+  def perform_completion(message, stream)
+    sse = ActionController::Live::SSE.new(stream, retry: 300)
+    conversation = message.conversation
+
     messages = []
 
     messages << {
@@ -29,45 +52,42 @@ class Conversations::MessagesController < ApplicationController
 
         ### Name
 
-        #{@conversation.persona.name}
+        #{conversation.persona.name}
 
         ### Description
 
-        #{@conversation.persona.description}
+        #{conversation.persona.description}
 
         ## Your settings
 
         ### Name
 
-        #{@conversation.character.name}
+        #{conversation.character.name}
 
         ### Description
 
-        #{@conversation.character.description}
+        #{conversation.character.description}
       EOF
     }
 
-    @conversation.messages.where("id < ?", @message.id).order(id: :asc).each do |message|
+    conversation.messages.where("id < ?", @message.id).order(id: :asc).each do |message|
       messages << {
-        role: message.creator == @conversation.persona ? "user" : "assistant",
+        role: message.creator == conversation.persona ? "user" : "assistant",
         content: message.content
       }
     end
 
     logger.info "Messages: #{messages.inspect}"
 
-    @openai = OpenAI::Client.new
+    openai = OpenAI::Client.new
 
-    stream = @openai.chat.completions.stream_raw(
+    openai_stream = openai.chat.completions.stream_raw(
       messages: messages,
       model: "deepseek-chat",
     )
 
-    response.header["Content-Type"] = "text/event-stream"
-    sse = SSE.new(response.stream, retry: 300)
-
     content = ""
-    stream.each do |chunk|
+    openai_stream.each do |chunk|
       puts chunk
       data = {
         content: chunk[:choices][0][:delta][:content],
@@ -83,15 +103,5 @@ class Conversations::MessagesController < ApplicationController
     @message.save!
   ensure
     sse.close
-  end
-
-  private
-
-  def set_conversation
-    @conversation = Current.user.conversations.find(params[:conversation_id])
-  end
-
-  def message_params
-    params.require(:message).permit(:content)
   end
 end
