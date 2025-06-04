@@ -87,4 +87,10 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.default_url_options = {
+    host: ENV.fetch("HOST", "localhost:3000")
+  }
 end
+
+Rails.application.routes.default_url_options = Rails.application.config.default_url_options
