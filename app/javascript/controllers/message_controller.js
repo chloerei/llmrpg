@@ -16,7 +16,7 @@ export default class extends Controller {
   }
 
   renderContent() {
-    if (this.contentValue) {
+    if (this.contentValue.length > 0) {
       const htmlContent = marked.parse(this.contentValue)
       this.contentTarget.innerHTML = DOMPurify.sanitize(htmlContent)
     }
