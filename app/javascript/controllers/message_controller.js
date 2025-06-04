@@ -6,36 +6,23 @@ import DOMPurify from "dompurify"
 export default class extends Controller {
   static values = {
     status: String,
-    completionUrl: String
+    content: String,
   }
 
   static targets = [ "content" ]
 
   connect() {
-    if (this.statusValue == "pending") {
-      // this.requestCompletion()
+    this.renderContent()
+  }
+
+  renderContent() {
+    if (this.contentValue) {
+      const htmlContent = marked.parse(this.contentValue)
+      this.contentTarget.innerHTML = DOMPurify.sanitize(htmlContent)
     }
   }
 
-  requestCompletion() {
-    const eventSource = new EventSource(
-      this.completionUrlValue
-    )
-
-    let content = ""
-
-    eventSource.onmessage = (event) => {
-      console.log("Received message:", event.data)
-      const data = JSON.parse(event.data)
-      content += data.content
-      this.contentTarget.innerHTML = DOMPurify.sanitize(
-        marked.parse(content)
-      )
-
-      if (data.done) {
-        eventSource.close()
-        console.log("EventSource closed")
-      }
-    }
+  contentValueChanged() {
+    this.renderContent()
   }
 }

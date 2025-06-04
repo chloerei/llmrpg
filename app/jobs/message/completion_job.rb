@@ -47,8 +47,16 @@ class Message::CompletionJob < ApplicationJob
 
     message.content = ""
     stream.each do |chunk|
-      message.content += chunk[:choices][0][:delta][:content]
-      message.save
+      content = chunk[:choices][0][:delta][:content]
+      message.content += content
+      Turbo::StreamsChannel.broadcast_stream_to(
+        message.conversation,
+        content: <<~HTML
+          <turbo-stream action="message_append" target="message_#{message.id}">
+            <template>#{content}</template>
+          </turbo-stream>
+        HTML
+      )
     end
 
     message.status = :completed

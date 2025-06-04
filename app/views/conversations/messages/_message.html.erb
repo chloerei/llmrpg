@@ -5,7 +5,9 @@
 <div id="<%= dom_id(message) %>" class="chat <%= position_class %>"
   data-controller="message"
   data-message-status-value="<%= message.status %>"
-  data-message-completion-url-value="<%= completion_conversation_message_path(message.conversation, message) %>"
+  <% if message.content %>
+    data-message-content-value="<%= message.content %>"
+  <% end %>
   >
   <div class="chat-image">
     <%= render "shared/avatar", avatar: message.creator.avatar, name: message.creator.name %>
@@ -13,8 +15,6 @@
   <div class="chat-bubble" data-message-target="content">
     <% if message.pending? and message.content.nil? %>
       <span class="loading loading-dots loading-sm"></span>
-    <% else %>
-      <%= markdown_render message.content %>
     <% end %>
   </div>
 </div>
