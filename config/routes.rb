@@ -14,6 +14,8 @@ Rails.application.routes.draw do
           get :completion
         end
       end
+
+      resource :completion, only: [ :create ]
     end
   end
 

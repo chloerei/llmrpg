@@ -1,0 +1,2 @@
+module Conversations::CompletionsHelper
+end
