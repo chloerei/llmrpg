@@ -62,7 +62,7 @@ class Conversations::CompletionsController < ApplicationController
       action: "create",
       message: {
         id: message.id,
-        content: message.content,
+        html: render_to_string(partial: "conversations/messages/message", locals: { message: message })
       }
     })
 
@@ -80,7 +80,7 @@ class Conversations::CompletionsController < ApplicationController
       action: "create",
       message: {
         id: response_message.id,
-        content: response_message.content,
+        html: render_to_string(partial: "conversations/messages/message", locals: { message: response_message })
       }
     })
 
@@ -98,14 +98,22 @@ class Conversations::CompletionsController < ApplicationController
           action: "append",
           message: {
             id: response_message.id,
-            content: content_chunk,
+            content: content_chunk
           }
         })
       end
     end
 
     response_message.status = :completed
-    response_message.save!
+    response_message.save
+
+    sse.write({
+      action: "update",
+      message: {
+        id: response_message.id,
+        html: render_to_string(partial: "conversations/messages/message", locals: { message: response_message })
+      }
+    })
   ensure
     sse.close
   end
