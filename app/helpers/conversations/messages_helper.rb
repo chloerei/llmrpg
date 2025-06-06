@@ -1,2 +1,0 @@
-module Conversations::MessagesHelper
-end

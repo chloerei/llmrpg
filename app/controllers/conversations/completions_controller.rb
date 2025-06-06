@@ -62,7 +62,7 @@ class Conversations::CompletionsController < ApplicationController
       action: "create",
       message: {
         id: message.id,
-        html: render_to_string(partial: "conversations/messages/message", locals: { message: message })
+        html: render_to_string(partial: "messages/message", locals: { message: message })
       }
     })
 
@@ -80,7 +80,7 @@ class Conversations::CompletionsController < ApplicationController
       action: "create",
       message: {
         id: response_message.id,
-        html: render_to_string(partial: "conversations/messages/message", locals: { message: response_message })
+        html: render_to_string(partial: "messages/message", locals: { message: response_message })
       }
     })
 
@@ -111,7 +111,7 @@ class Conversations::CompletionsController < ApplicationController
       action: "update",
       message: {
         id: response_message.id,
-        html: render_to_string(partial: "conversations/messages/message", locals: { message: response_message })
+        html: render_to_string(partial: "messages/message", locals: { message: response_message })
       }
     })
   ensure

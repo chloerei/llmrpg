@@ -23,7 +23,7 @@
   </div>
 
   <div id="messages" class="min-h-screen mt-4" data-conversation-target="messages">
-    <%= render partial: "conversations/messages/message", collection: @conversation.messages.order(created_at: :asc) %>
+    <%= render partial: "messages/message", collection: @conversation.messages.order(created_at: :asc) %>
   </div>
 
   <div class="sticky bottom-0">
