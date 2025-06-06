@@ -47,6 +47,7 @@ export default class extends Controller {
       onerror: (error) => {
         throw error
       },
+      openWhenHidden: true,
     })
   }
 }
