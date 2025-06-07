@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_30_023501) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -53,16 +53,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_023501) do
   end
 
   create_table "conversations", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "persona_id"
-    t.bigint "character_id"
-    t.string "name"
-    t.string "description"
+    t.bigint "room_id", null: false
+    t.string "title", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["character_id"], name: "index_conversations_on_character_id"
-    t.index ["persona_id"], name: "index_conversations_on_persona_id"
-    t.index ["user_id"], name: "index_conversations_on_user_id"
+    t.index ["room_id"], name: "index_conversations_on_room_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_members_on_character_id"
+    t.index ["room_id"], name: "index_members_on_room_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -86,6 +90,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_023501) do
     t.index ["user_id"], name: "index_personas_on_user_id"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "persona_id"
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["persona_id"], name: "index_rooms_on_persona_id"
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "ip"
@@ -106,8 +121,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_30_023501) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "characters", "users"
-  add_foreign_key "conversations", "users"
+  add_foreign_key "conversations", "rooms"
+  add_foreign_key "members", "characters"
+  add_foreign_key "members", "rooms"
   add_foreign_key "messages", "conversations"
   add_foreign_key "personas", "users"
+  add_foreign_key "rooms", "personas"
+  add_foreign_key "rooms", "users"
   add_foreign_key "sessions", "users"
 end

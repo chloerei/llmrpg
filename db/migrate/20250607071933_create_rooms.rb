@@ -1,9 +1,8 @@
-class CreateConversations < ActiveRecord::Migration[8.0]
+class CreateRooms < ActiveRecord::Migration[8.0]
   def change
-    create_table :conversations do |t|
+    create_table :rooms do |t|
       t.references :user, null: false, foreign_key: true
-      t.references :persona
-      t.references :character
+      t.references :persona, null: true, foreign_key: true
 
       t.string :name
       t.string :description
