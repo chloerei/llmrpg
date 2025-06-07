@@ -17,7 +17,7 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @conversation = Current.user.conversations.new(conversation_params)
+    @conversation = Conversation.new(conversation_params)
 
     if @conversation.save
       redirect_to @conversation, notice: "Conversation was successfully created."
@@ -43,7 +43,7 @@ class ConversationsController < ApplicationController
   private
 
   def set_conversation
-    @conversation = Current.user.conversations.find(params.expect(:id))
+    @conversation = Conversations.find(params.expect(:id))
   end
 
   def conversation_params

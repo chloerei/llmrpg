@@ -2,8 +2,10 @@ require "test_helper"
 
 class ConversationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @conversation = conversations(:one)
-    sign_in_as users(:one)
+    @user = create(:user)
+    @room = create(:room, user: @user)
+    @conversation = create(:conversation, room: @room)
+    sign_in_as @user
   end
 
   test "should get index" do

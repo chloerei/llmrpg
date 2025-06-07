@@ -99,6 +99,11 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
+    factory_bot (6.5.3)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.4.4)
+      factory_bot (~> 6.5)
+      railties (>= 5.0.0)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -349,6 +354,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv
+  factory_bot_rails
   hotwire-spark
   image_processing (~> 1.2)
   jbuilder

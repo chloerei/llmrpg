@@ -1,0 +1,7 @@
+FactoryBot.define do
+  factory :room do
+    user
+    name { "Room Name" }
+    description { "This is a description of the room." }
+  end
+end
