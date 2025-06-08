@@ -6,15 +6,10 @@ Rails.application.routes.draw do
 
   resources :personas
   resources :characters
+  resources :rooms
 
   resources :conversations do
     scope module: :conversations do
-      resources :messages do
-        member do
-          get :completion
-        end
-      end
-
       resource :completion, only: [ :create ]
     end
   end

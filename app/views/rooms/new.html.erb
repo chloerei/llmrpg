@@ -1,0 +1,16 @@
+<% content_for :title, "New room" %>
+
+<div class="breadcrumbs">
+  <ul>
+    <li>
+      <a href="<%= rooms_path %>">
+        Rooms
+      </a>
+    </li>
+    <li>
+      New room
+    </li>
+  </ul>
+</div>
+
+<%= render "form", room: @room %>

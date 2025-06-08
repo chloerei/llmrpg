@@ -3,7 +3,8 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :personas, dependent: :destroy
   has_many :characters, dependent: :destroy
-  has_many :room, dependent: :destroy
+  has_many :rooms, dependent: :destroy
+  has_many :conversations, dependent: :destroy
 
   normalizes :email, with: ->(e) { e.strip }
 end

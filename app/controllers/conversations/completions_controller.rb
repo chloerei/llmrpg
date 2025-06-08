@@ -29,32 +29,44 @@ class Conversations::CompletionsController < ApplicationController
     messages = []
 
     messages << {
-      role: "user",
+      role: "system",
       content: <<~EOF
-        ## My settings
-
-        ### Name
-
-        #{@conversation.persona.name}
-
-        ### Description
-
-        #{@conversation.persona.description}
-
-        ## Your settings
-
-        ### Name
-
-        #{@conversation.character.name}
-
-        ### Description
-
-        #{@conversation.character.description}
+        You are a role playing assistant in a chat room. You will reply to the user as a character based on the settings provided.
       EOF
     }
 
+    character_settings = @conversation.room.characters.map do |character|
+      <<~EOF
+        name: #{character.name}
+
+        description: #{character.description}
+      EOF
+    end.join("\n\n")
+
+    messages << {
+      role: "user",
+      content: <<~EOF
+        ## User settings
+
+        name: #{@conversation.room.persona.name}
+
+        description: #{@conversation.room.persona.description}
+
+        ## Characters settings
+
+        #{character_settings}
+      EOF
+    }
+
+    @conversation.messages.each do |message|
+      messages << {
+        role: message.creator_type == "Character" ? "assistant" : "user",
+        content: "#{message.creator.name}: #{message.content}"
+      }
+    end
+
     message = @conversation.messages.new(message_params)
-    message.creator = @conversation.persona
+    message.creator = @conversation.room.persona
     message.status = :completed
     message.save
 
@@ -68,52 +80,65 @@ class Conversations::CompletionsController < ApplicationController
 
     messages << {
       role: "user",
-      content: message.content
+      content: "#{message.creator.name}: #{message.content}"
     }
 
-    response_message = @conversation.messages.create(
-      creator: @conversation.character,
-      content: "",
-    )
-
-    sse.write({
-      action: "create",
-      message: {
-        id: response_message.id,
-        html: render_to_string(partial: "messages/message", locals: { message: response_message })
-      }
-    })
-
     openai = OpenAI::Client.new
-    openai_stream = openai.chat.completions.stream_raw(
-      messages: messages,
-      model: "deepseek-chat",
-    )
 
-    openai_stream.each do |chunk|
-      content_chunk = chunk[:choices][0][:delta][:content]
-      if content_chunk
-        response_message.content += content_chunk
-        sse.write({
-          action: "append",
-          message: {
-            id: response_message.id,
-            content: content_chunk
-          }
-        })
+    @conversation.room.characters.each do |character|
+      response_message = @conversation.messages.create(
+        creator: character,
+        content: "",
+      )
+
+      sse.write({
+        action: "create",
+        message: {
+          id: response_message.id,
+          html: render_to_string(partial: "messages/message", locals: { message: response_message })
+        }
+      })
+
+      logger.info messages.inspect
+
+      openai_stream = openai.chat.completions.stream_raw(
+        messages: messages + [{
+          role: "user",
+          content: "Continue conversation as #{character.name}, without character name prefix."
+        }],
+        model: "deepseek-chat",
+      )
+
+      openai_stream.each do |chunk|
+        content_chunk = chunk[:choices][0][:delta][:content]
+        if content_chunk
+          response_message.content += content_chunk
+          sse.write({
+            action: "append",
+            message: {
+              id: response_message.id,
+              content: content_chunk
+            }
+          })
+        end
       end
-    end
 
-    response_message.status = :completed
-    response_message.save
+      response_message.status = :completed
+      response_message.save
 
-    sse.write({
-      action: "update",
-      message: {
-        id: response_message.id,
-        html: render_to_string(partial: "messages/message", locals: { message: response_message })
+      messages << {
+        role: "assistant",
+        content: "#{character.name}: #{response_message.content}"
       }
-    })
+
+      sse.write({
+        action: "update",
+        message: {
+          id: response_message.id,
+          html: render_to_string(partial: "messages/message", locals: { message: response_message })
+        }
+      })
+    end
   ensure
     sse.close
   end

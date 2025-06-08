@@ -1,0 +1,41 @@
+<div class="breadcrumbs">
+  <ul>
+    <li>
+      <a href="<%= rooms_path %>">
+        Rooms
+      </a>
+    </li>
+    <li>
+      <%= @room.name %>
+    </li>
+  </ul>
+</div>
+
+<div class="flex gap-4 items-center">
+  <%= render "shared/avatar", avatar: @room.persona.avatar, name: @room.persona.name %>
+
+  <div class="avatar-group -space-x-5">
+    <% @room.characters.each do |character| %>
+      <%= render "shared/avatar", avatar: character.avatar, name: character.name %>
+    <% end %>
+  </div>
+</div>
+
+<div class=""
+  data-controller="conversation"
+  data-conversation-completion-url-value="<%= conversation_completion_path(@conversation) %>"
+  >
+  <div id="messages" class="min-h-screen mt-4" data-conversation-target="messages">
+    <%= render partial: "messages/message", collection: @conversation.messages.order(created_at: :asc) %>
+  </div>
+
+  <div class="sticky bottom-0">
+    <div class="max-w-screen-lg mx-auto pb-4">
+      <div class="card bg-base-300 p-4">
+        <form data-conversation-target="form" data-action="submit->conversation#completion:prevent">
+          <input type="text" name="message[content]" class="input w-full" autocomplete="off">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

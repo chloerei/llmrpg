@@ -53,11 +53,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
   end
 
   create_table "conversations", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.bigint "room_id", null: false
     t.string "title", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_conversations_on_room_id"
+    t.index ["user_id"], name: "index_conversations_on_user_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -122,6 +124,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "characters", "users"
   add_foreign_key "conversations", "rooms"
+  add_foreign_key "conversations", "users"
   add_foreign_key "members", "characters"
   add_foreign_key "members", "rooms"
   add_foreign_key "messages", "conversations"
