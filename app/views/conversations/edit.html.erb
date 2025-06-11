@@ -7,6 +7,6 @@
 <br>
 
 <div>
-  <%= link_to "Show this conversation", @conversation %> |
-  <%= link_to "Back to conversations", conversations_path %>
+  <%= link_to "Show this conversation", room_conversation_path(@room, @conversation) %> |
+  <%= link_to "Back to conversations", room_conversations_path(@room) %>
 </div>

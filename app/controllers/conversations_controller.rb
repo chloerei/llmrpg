@@ -1,26 +1,20 @@
 class ConversationsController < ApplicationController
+  include RoomScoped
+
   before_action :set_conversation, only: %i[ show edit update destroy ]
 
-  # GET /conversations or /conversations.json
-  def index
-    @conversations = Conversation.all
-  end
-
   def show
-  end
-
-  def new
-    @conversation = Conversation.new
   end
 
   def edit
   end
 
   def create
-    @conversation = Conversation.new(conversation_params)
+    @conversation = @room.conversations.new
+    @conversation.user = Current.user
 
-    if @conversation.save
-      redirect_to @conversation, notice: "Conversation was successfully created."
+    if @conversation.save!
+      redirect_to room_conversation_url(@room, @conversation), notice: "Conversation was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +22,7 @@ class ConversationsController < ApplicationController
 
   def update
     if @conversation.update(conversation_params)
-      redirect_to @conversation, notice: "Conversation was successfully updated."
+      redirect_to room_conversation_url(@room, @conversation), notice: "Conversation was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,16 +31,16 @@ class ConversationsController < ApplicationController
   def destroy
     @conversation.destroy!
 
-    redirect_to conversations_path, status: :see_other, notice: "Conversation was successfully destroyed."
+    redirect_to room_conversations_path(@room), status: :see_other, notice: "Conversation was successfully destroyed."
   end
 
   private
 
   def set_conversation
-    @conversation = Conversations.find(params.expect(:id))
+    @conversation = @room.conversations.find(params.expect(:id))
   end
 
   def conversation_params
-    params.expect(conversation: [ :persona_id, :character_id, :name, :description ])
+    params.expect(conversation: [ :title ])
   end
 end

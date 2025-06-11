@@ -2,7 +2,10 @@ require "test_helper"
 
 class RoomsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @room = rooms(:one)
+    @user = create(:user)
+    @persona = create(:persona, user: @user)
+    @room = create(:room, user: @user, persona: @persona)
+    sign_in_as @user
   end
 
   test "should get index" do
@@ -17,7 +20,7 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create room" do
     assert_difference("Room.count") do
-      post rooms_url, params: { room: { Room: @room.Room } }
+      post rooms_url, params: { room: { persona_id: @persona.id } }
     end
 
     assert_redirected_to room_url(Room.last)
@@ -34,7 +37,7 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update room" do
-    patch room_url(@room), params: { room: { Room: @room.Room } }
+    patch room_url(@room), params: { room: { name: "changed" } }
     assert_redirected_to room_url(@room)
   end
 

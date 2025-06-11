@@ -6,11 +6,11 @@ Rails.application.routes.draw do
 
   resources :personas
   resources :characters
-  resources :rooms
-
-  resources :conversations do
-    scope module: :conversations do
-      resource :completion, only: [ :create ]
+  resources :rooms do
+    resources :conversations do
+      scope module: :conversations do
+        resource :completion, only: [ :create ]
+      end
     end
   end
 

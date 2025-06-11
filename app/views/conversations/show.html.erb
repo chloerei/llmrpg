@@ -3,25 +3,20 @@
 <div class="breadcrumbs">
   <ul>
     <li>
-      <a href="<%= conversations_path %>">
-        Conversations
+      <a href="<%= room_path(@room) %>">
+        <%= @room.name.presence || "Unnamed Room" %>
       </a>
     </li>
     <li>
-      <%= @conversation.name.presence || "Untitled" %>
+      <%= @conversation.title.presence || "Untitled" %>
     </li>
   </ul>
 </div>
 
 <div class=""
   data-controller="conversation"
-  data-conversation-completion-url-value="<%= conversation_completion_path(@conversation) %>"
+  data-conversation-completion-url-value="<%= room_conversation_completion_path(@room, @conversation) %>"
   >
-  <div class="avatar-group -space-x-5">
-    <%= render "shared/avatar", avatar: @conversation.persona.avatar, name: @conversation.persona.name %>
-    <%= render "shared/avatar", avatar: @conversation.character.avatar, name: @conversation.character.name %>
-  </div>
-
   <div id="messages" class="min-h-screen mt-4" data-conversation-target="messages">
     <%= render partial: "messages/message", collection: @conversation.messages.order(created_at: :asc) %>
   </div>

@@ -1,4 +1,4 @@
-<%= form_with(model: conversation) do |form| %>
+<%= form_with(model: conversation, url: [@room, conversation]) do |form| %>
   <% if conversation.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>

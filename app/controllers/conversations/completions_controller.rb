@@ -1,5 +1,6 @@
 class Conversations::CompletionsController < ApplicationController
-  before_action :set_conversation
+  include RoomScoped
+  include ConversationScoped
 
   def create
     response.headers["Content-Type"] = "text/event-stream"
@@ -14,10 +15,6 @@ class Conversations::CompletionsController < ApplicationController
   end
 
   private
-
-  def set_conversation
-    @conversation = Current.user.conversations.find(params[:conversation_id])
-  end
 
   def message_params
     params.require(:message).permit(:content)
@@ -102,10 +99,10 @@ class Conversations::CompletionsController < ApplicationController
       logger.info messages.inspect
 
       openai_stream = openai.chat.completions.stream_raw(
-        messages: messages + [{
+        messages: messages + [ {
           role: "user",
           content: "Continue conversation as #{character.name}, without character name prefix."
-        }],
+        } ],
         model: "deepseek-chat",
       )
 
