@@ -73,33 +73,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
 
   create_table "messages", force: :cascade do |t|
     t.bigint "conversation_id", null: false
-    t.string "creator_type", null: false
-    t.bigint "creator_id", null: false
+    t.bigint "character_id"
+    t.integer "role", default: 0, null: false
     t.text "content", default: "", null: false
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_messages_on_character_id"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
-    t.index ["creator_type", "creator_id"], name: "index_messages_on_creator"
-  end
-
-  create_table "personas", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "name", null: false
-    t.text "description", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_personas_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "persona_id"
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["persona_id"], name: "index_rooms_on_persona_id"
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
@@ -128,8 +117,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
   add_foreign_key "members", "characters"
   add_foreign_key "members", "rooms"
   add_foreign_key "messages", "conversations"
-  add_foreign_key "personas", "users"
-  add_foreign_key "rooms", "personas"
   add_foreign_key "rooms", "users"
   add_foreign_key "sessions", "users"
 end

@@ -1,4 +1,4 @@
-<%# locals: (avatar:, name: , size: :medium) %>
+<%# locals: (character:, size: :medium) %>
 
 <%
   size_to_class = {
@@ -6,20 +6,18 @@
     medium: "size-10",
     large: "size-20"
   }
-
-  name ||= "Anonymous"
 %>
 
-<% if avatar.attached? %>
+<% if character.avatar.attached? %>
   <div class="avatar">
     <div class="<%= size_to_class[size] %> rounded-full">
-      <%= image_tag avatar.variant(:thumb) %>
+      <%= image_tag character.avatar.variant(:thumb) %>
     </div>
   </div>
 <% else %>
   <div class="avatar avatar-placeholder">
     <div class="bg-base-300 text-base-content <%= size_to_class[size] %> rounded-full">
-      <span class="text-xl"><%= name[0] %></span>
+      <span class="text-xl"><%= (character.name || "N")[0] %></span>
     </div>
   </div>
 <% end %>

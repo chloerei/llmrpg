@@ -28,7 +28,7 @@ class Conversations::CompletionsController < ApplicationController
     messages << {
       role: "system",
       content: <<~EOF
-        You are a role playing assistant in a chat room. You will reply to the user as a character based on the settings provided.
+        You are a role playing assistant in a chat room.
       EOF
     }
 
@@ -43,12 +43,6 @@ class Conversations::CompletionsController < ApplicationController
     messages << {
       role: "user",
       content: <<~EOF
-        ## User settings
-
-        name: #{@conversation.room.persona.name}
-
-        description: #{@conversation.room.persona.description}
-
         ## Characters settings
 
         #{character_settings}
@@ -56,14 +50,11 @@ class Conversations::CompletionsController < ApplicationController
     }
 
     @conversation.messages.each do |message|
-      messages << {
-        role: message.creator_type == "Character" ? "assistant" : "user",
-        content: "#{message.creator.name}: #{message.content}"
-      }
+      messages << message.to_openai_message
     end
 
     message = @conversation.messages.new(message_params)
-    message.creator = @conversation.room.persona
+    message.role = :user
     message.status = :completed
     message.save
 
@@ -75,16 +66,14 @@ class Conversations::CompletionsController < ApplicationController
       }
     })
 
-    messages << {
-      role: "user",
-      content: "#{message.creator.name}: #{message.content}"
-    }
+    messages << message.to_openai_message
 
     openai = OpenAI::Client.new
 
     @conversation.room.characters.each do |character|
       response_message = @conversation.messages.create(
-        creator: character,
+        character: character,
+        role: :assistant,
         content: "",
       )
 
@@ -123,10 +112,7 @@ class Conversations::CompletionsController < ApplicationController
       response_message.status = :completed
       response_message.save
 
-      messages << {
-        role: "assistant",
-        content: "#{character.name}: #{response_message.content}"
-      }
+      messages << response_message.to_openai_message
 
       sse.write({
         action: "update",

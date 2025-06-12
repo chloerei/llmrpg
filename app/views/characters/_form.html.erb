@@ -16,7 +16,7 @@
       Avatar
     </legend>
 
-    <%= render "shared/avatar", avatar: character.avatar, name: character.name, size: :large %>
+    <%= render "shared/avatar", character: character, size: :large %>
 
     <%= form.file_field :avatar, class: "file-input" %>
   </fieldset>

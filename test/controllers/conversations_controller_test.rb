@@ -3,8 +3,7 @@ require "test_helper"
 class ConversationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:user)
-    @persona = create(:persona, user: @user)
-    @room = create(:room, user: @user, persona: @persona)
+    @room = create(:room, user: @user)
     @conversation = create(:conversation, room: @room, user: @user)
     sign_in_as @user
   end

@@ -1,18 +1,20 @@
 <%
-  position_class = message.creator_type == "Character" ? "chat-start" : "chat-end"
+  position_class = message.role == "Character" ? "chat-start" : "chat-end"
 %>
 
-<div id="<%= dom_id(message) %>" class="chat <%= position_class %>"
+<div id="<%= dom_id(message) %>" class="chat <%= message.user? ? "chat-end" : "chat-start" %>"
   data-controller="message"
   data-message-status-value="<%= message.status %>"
   data-message-content-value="<%= message.content %>"
   >
-  <div class="chat-image">
-    <%= render "shared/avatar", avatar: message.creator.avatar, name: message.creator.name %>
-  </div>
-  <div class="chat-header">
-    <%= message.creator.name %>
-  </div>
+  <% if message.character %>
+    <div class="chat-image">
+      <%= render "shared/avatar", character: message.character %>
+    </div>
+    <div class="chat-header">
+      <%= message.character.name %>
+    </div>
+  <% end %>
   <div class="chat-bubble" data-message-target="content">
     <% if message.pending? and message.content.blank? %>
       <span class="loading loading-dots loading-sm"></span>

@@ -12,11 +12,9 @@
 </div>
 
 <div class="flex gap-4 items-center">
-  <%= render "shared/avatar", avatar: @room.persona.avatar, name: @room.persona.name %>
-
   <div class="avatar-group -space-x-5">
     <% @room.characters.each do |character| %>
-      <%= render "shared/avatar", avatar: character.avatar, name: character.name %>
+      <%= render "shared/avatar", character: character %>
     <% end %>
   </div>
 </div>

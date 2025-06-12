@@ -13,13 +13,6 @@
 
   <fieldset class="fieldset">
     <legend class="fieldset-legend">
-      Personas
-    </legend>
-    <%= form.collection_select :persona_id, Current.user.personas.all, :id, :name, {}, class: "select" %>
-  </fieldset>
-
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">
       Character
     </legend>
     <%= form.collection_select :character_id, Current.user.characters.all, :id, :name, {}, class: "select" %>

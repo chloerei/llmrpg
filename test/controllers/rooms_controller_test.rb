@@ -3,8 +3,7 @@ require "test_helper"
 class RoomsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:user)
-    @persona = create(:persona, user: @user)
-    @room = create(:room, user: @user, persona: @persona)
+    @room = create(:room, user: @user)
     sign_in_as @user
   end
 
@@ -20,7 +19,7 @@ class RoomsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create room" do
     assert_difference("Room.count") do
-      post rooms_url, params: { room: { persona_id: @persona.id } }
+      post rooms_url, params: { room: { name: "Room Name" } }
     end
 
     assert_redirected_to room_url(Room.last)
