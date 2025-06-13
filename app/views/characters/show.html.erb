@@ -1,57 +1,60 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="breadcrumbs text-sm">
-  <ul>
-    <li>
-      <a href="<%= characters_path %>">
-        Characters
-      </a>
-    </li>
-    <li>
-      <%= @character.name %>
-    </li>
-  </ul>
-</div>
-
-<div class="space-y-4 mt-4">
-  <div>
-    <div class="font-medium">
-      Avatar
-    </div>
-    <div>
-      <%= render "shared/avatar", character: @character, size: :large %>
-    </div>
-  </div>
-
-  <div>
-    <div class="font-medium">
-      Name
-    </div>
-    <div>
-      <%= @character.name %>
-    </div>
-  </div>
-
-  <div>
-    <div class="font-medium">
-      Description
-    </div>
-    <div>
-      <%= @character.description %>
-    </div>
-  </div>
-</div>
-
-<div class="flex mt-4">
-  <div class="grow">
-    <a href="<%= edit_character_path(@character) %>" class="btn btn-soft">
-      Edit this character
+<div class="navbar shadow-xs sticky top-0 z-50 bg-base-100">
+  <div class="flex-none">
+    <a href="<%= characters_path %>" class="btn btn-ghost btn-square">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
     </a>
   </div>
+  <div class="flex-1">
+    <div class="text-xl px-2">
+      <%= @character.name %>
+    </div>
+  </div>
+  <div class="flex-none">
+    <a href="<%= edit_character_path(@character) %>" class="btn btn-ghost">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen-icon lucide-square-pen"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>
+      Edit
+    </a>
 
-  <%= form_with url: character_path(@character), method: :delete do %>
-    <button type="submit" class="btn btn-warning">
-      Destroy this character
-    </button>
-  <% end %>
+    <div class="dropdown dropdown-end">
+      <label tabindex="0" role="button" class="btn btn-ghost btn-square">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+      </label>
+      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-40 p-2 shadow-sm">
+        <li>
+          <a href="<%= character_path(@character) %>" data-turbo-method="delete" data-turbo-confirm="Are you sure you want to delete this character? This action cannot be undone.">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+            Delete
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-3xl mx-auto p-4">
+  <div class="space-y-4 mt-4">
+    <div>
+      <div>
+        <%= render "shared/avatar", character: @character, size: :large %>
+      </div>
+    </div>
+
+    <div>
+      <div class="font-medium">
+        Name
+      </div>
+      <div>
+        <%= @character.name %>
+      </div>
+    </div>
+
+    <div>
+      <div class="font-medium">
+        Description
+      </div>
+      <div>
+        <%= @character.description %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,19 +1,26 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Characters" %>
 
-<div class="flex items-center">
-  <div class="grow">
-    <div class="text-lg font-medium">
+<div class="navbar shadow-xs sticky top-0 z-50 bg-base-100">
+  <div class="flex-none">
+    <label for="drawer" class="btn btn-ghost btn-square lg:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
+    </label>
+  </div>
+  <div class="flex-1">
+    <div class="text-xl px-2">
       Characters
     </div>
   </div>
-
-  <a href="<%= new_character_path %>" class="btn btn-soft">
-    New Character
-  </a>
+  <div class="flex-none">
+    <a href="<%= new_character_path %>" class="btn btn-ghost">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      Add
+    </a>
+  </div>
 </div>
 
-<ul class="list">
-  <%= render @characters %>
-</ul>
+<div class="max-w-3xl mx-auto p-4">
+  <ul class="list">
+    <%= render @characters %>
+  </ul>
+</div>
