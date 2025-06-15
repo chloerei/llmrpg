@@ -1,7 +1,21 @@
-<div id="<%= dom_id room %>">
-  <p>
-    <strong>Name:</strong>
-    <%= room.name %>
-  </p>
-
+<div id="<%= dom_id room %>" class="list-row hover:bg-base-200">
+  <div class="list-col-grow">
+    <h3 class="text-lg font-medium">
+      <a href="<%= room_path(room) %>" class="block after:absolute after:inset-0">
+        <%= room.name %>
+      </a>
+    </h3>
+    <div class="avatar-group -space-x-4">
+      <% room.characters.order("members.created_at desc").limit(10).each do |character| %>
+        <%= render "shared/avatar", character: character, size: :small %>
+      <% end %>
+      <% if room.characters.count > 10 %>
+        <div class="avatar avatar-placeholder">
+          <div class="bg-neutral text-neutral-content w-6">
+            <span>+<%= room.characters.count - 10 %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

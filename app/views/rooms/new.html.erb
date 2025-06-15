@@ -1,16 +1,18 @@
 <% content_for :title, "New room" %>
 
-<div class="breadcrumbs">
-  <ul>
-    <li>
-      <a href="<%= rooms_path %>">
-        Rooms
-      </a>
-    </li>
-    <li>
-      New room
-    </li>
-  </ul>
+<div class="navbar shadow-xs sticky top-0 z-50 bg-base-100">
+  <div class="flex-none">
+    <a href="<%= rooms_path %>" class="btn btn-ghost btn-square">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+    </a>
+  </div>
+  <div class="flex-1">
+    <div class="text-xl px-2">
+      New Room
+    </div>
+  </div>
 </div>
 
-<%= render "form", room: @room %>
+<div class="max-w-3xl mx-auto p-4">
+  <%= render "form", room: @room %>
+</div>
