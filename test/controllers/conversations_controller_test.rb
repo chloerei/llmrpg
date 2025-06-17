@@ -31,6 +31,6 @@ class ConversationsControllerTest < ActionDispatch::IntegrationTest
       delete room_conversation_url(@room, @conversation)
     end
 
-    assert_redirected_to room_conversations_url(@room)
+    assert_redirected_to room_url(@room)
   end
 end

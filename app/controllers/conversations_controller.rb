@@ -31,7 +31,7 @@ class ConversationsController < ApplicationController
   def destroy
     @conversation.destroy!
 
-    redirect_to room_conversations_path(@room), status: :see_other, notice: "Conversation was successfully destroyed."
+    redirect_to room_path(@room), status: :see_other, notice: "Conversation was successfully destroyed."
   end
 
   private
