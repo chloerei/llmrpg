@@ -58,6 +58,11 @@ class Conversations::CompletionsController < ApplicationController
     message.status = :completed
     message.save
 
+    if @conversation.title.blank?
+      @conversation.title = @conversation.messages.where(role: :user).first.content.truncate(50)
+      @conversation.save
+    end
+
     sse.write({
       action: "create",
       message: {
