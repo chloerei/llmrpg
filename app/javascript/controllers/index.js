@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CharacterSelectController from "./character_select_controller"
+application.register("character-select", CharacterSelectController)
+
 import ConversationController from "./conversation_controller"
 application.register("conversation", ConversationController)
 

@@ -17,6 +17,7 @@
     "daisyui": "^5.0.38",
     "dompurify": "^3.2.6",
     "marked": "^15.0.12",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.7",
+    "tom-select": "^2.4.3"
   }
 }

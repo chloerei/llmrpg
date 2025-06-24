@@ -1,6 +1,9 @@
 @import "tailwindcss" source(none);
 
+@source "./";
 @source "../../javascript";
 @source "../../views";
 
 @plugin "daisyui";
+
+@import "./tom-select";

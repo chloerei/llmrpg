@@ -1,0 +1,41 @@
+.ts-wrapper {
+  @apply relative;
+  width: clamp(3rem,20rem,100%);
+
+  .ts-control {
+    @apply textarea flex flex-wrap gap-2 h-auto min-h-0;
+  }
+
+  .item {
+    @apply h-8 outline-1 rounded-sm flex items-center gap-2 px-2;
+
+    outline-color: var(--input-color);
+  }
+
+  .remove {
+    @apply size-6 -mx-1 flex items-center justify-center rounded-full hover:bg-gray-200;
+  }
+
+  input {
+    @apply h-8 flex-1 min-w-[7rem] outline-none;
+  }
+
+  .ts-dropdown {
+  }
+
+  .ts-dropdown-content {
+    @apply absolute bg-base-100 rounded-box shadow-sm z-1 w-full p-2;
+  }
+
+  .option {
+    @apply h-10 flex items-center gap-2 px-2 rounded-sm cursor-pointer;
+  }
+
+  .option.active {
+    @apply bg-base-300;
+  }
+
+  .no-results {
+    @apply opacity-80 text-sm p-2;
+  }
+}

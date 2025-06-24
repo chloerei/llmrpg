@@ -31,13 +31,12 @@
     <legend class="fieldset-legend">
       Characters
     </legend>
-
-    <% Current.user.characters.each do |character| %>
-      <label class="label">
-        <%= form.check_box :character_ids, { multiple: true, class: "checkbox" }, character.id, nil %>
-        <%= character.name %>
-      </label>
-    <% end %>
+    <div
+      data-controller="character-select"
+      data-character-select-options-value="<%= room.user.characters.map { |character| { id: character.id, name: character.name, avatar_url: url_for(character.avatar.variant(:thumb)) } }.to_json %>"
+    >
+      <%= form.hidden_field :character_list, placeholder: "Add character...", data: { character_select_target: "input" } %>
+    </div>
   </fieldset>
 
   <div class="mt-4">
