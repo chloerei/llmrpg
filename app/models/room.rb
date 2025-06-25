@@ -5,10 +5,10 @@ class Room < ApplicationRecord
   has_many :conversations, dependent: :destroy
 
   def character_list
-    character_ids.join(',')
+    character_ids.join(",")
   end
 
   def character_list=(ids)
-    self.character_ids = user.characters.where(id: ids.split(',').map(&:strip)).pluck(:id)
+    self.character_ids = user.characters.where(id: ids.split(",").map(&:strip)).pluck(:id)
   end
 end

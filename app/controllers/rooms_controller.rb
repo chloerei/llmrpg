@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
   end
 
   def new
-    @room = Room.new
+    @room = Current.user.rooms.new
   end
 
   def edit
