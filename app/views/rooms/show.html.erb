@@ -44,30 +44,38 @@
 
   <div class="mt-4">
     <div class="font-medium">
-      Characters
+      Members
     </div>
     <div class="mt-2">
-      <div class="avatar-group -space-x-6">
-        <% @room.characters.each do |character| %>
-          <%= render "shared/avatar", character: character %>
-        <% end %>
-      </div>
+      <a href="<%= room_members_path(@room) %>">
+        <div class="avatar-group -space-x-6">
+          <% @room.characters.each do |character| %>
+            <%= render "shared/avatar", character: character %>
+          <% end %>
+        </div>
+      </a>
     </div>
-  </div>
-
-  <div class="mt-4">
-    <%= form_with url: room_conversations_path(@room), method: :post do |form| %>
-      <button type="submit" class="btn btn-soft">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-plus-icon lucide-message-square-plus"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v6"/><path d="M9 10h6"/></svg>
-        New Conversation
-      </button>
-    <% end %>
+    <div class="mt-2">
+      <a href="<%= new_room_member_path(@room) %>" class="btn btn-soft">
+        Add Member
+      </a>
+    </div>
   </div>
 
   <div class="mt-4">
     <div class="font-medium">
       Conversations
     </div>
+
+    <div class="mt-4">
+      <%= form_with url: room_conversations_path(@room), method: :post do |form| %>
+        <button type="submit" class="btn btn-soft">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-plus-icon lucide-message-square-plus"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v6"/><path d="M9 10h6"/></svg>
+          New Conversation
+        </button>
+      <% end %>
+    </div>
+
     <ul class="list mt-2">
       <% @room.conversations.order(id: :desc).each do |conversation| %>
         <li class="list-row hover:bg-base-200 relative">

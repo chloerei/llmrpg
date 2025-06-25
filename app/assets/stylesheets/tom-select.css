@@ -39,3 +39,7 @@
     @apply opacity-80 text-sm p-2;
   }
 }
+
+.ts-hidden-accessible {
+  @apply hidden;
+}

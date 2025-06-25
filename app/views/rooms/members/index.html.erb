@@ -1,0 +1,56 @@
+<div class="navbar shadow-xs sticky top-0 z-50 bg-base-100">
+  <div class="flex-none">
+    <a href="<%= room_path(@room) %>" class="btn btn-ghost btn-square">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+    </a>
+  </div>
+  <div class="flex-1">
+    <div class="text-xl px-2">
+      Members
+    </div>
+  </div>
+  <div class="flex-none">
+    <a href="<%= new_room_member_path(@room) %>" class="btn btn-ghost">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-plus-icon lucide-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+      Add
+    </a>
+  </div>
+</div>
+
+<div class="max-w-3xl mx-auto p-4">
+  <ul class="list">
+    <% @members.each do |member| %>
+      <li class="list-row items-center relative hover:bg-base-200">
+        <div>
+          <%= render "shared/avatar", character: member.character %>
+        </div>
+        <div>
+          <div class="font-medium">
+            <a href="<%= character_path(member.character) %>" class="after:absolute after:inset-0">
+              <%= member.character.name %>
+            </a>
+          </div>
+        </div>
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost btn-square">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ellipsis-vertical-icon lucide-ellipsis-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+          </label>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 shadow-sm rounded-box w-60">
+            <li>
+              <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check-icon lucide-user-check"><path d="m16 11 2 2 4-4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                Use Character
+              </a>
+            </li>
+            <li>
+              <a href="<%= room_member_path(@room, member) %>" data-turbo-method="delete" data-turbo-confirm="Are you sure you want to remove this member?">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-minus-icon lucide-user-minus"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+                Remove Member
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

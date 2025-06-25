@@ -11,6 +11,10 @@ Rails.application.routes.draw do
         resource :completion, only: [ :create ]
       end
     end
+
+    scope module: :rooms do
+      resources :members, only: [ :index, :new, :create, :destroy ]
+    end
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
