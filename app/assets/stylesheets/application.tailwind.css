@@ -7,3 +7,7 @@
 @plugin "daisyui";
 
 @import "./tom-select";
+
+@utility animate-fade-out {
+  @apply transition-opacity duration-300 ease-in-out opacity-0;
+}

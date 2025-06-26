@@ -59,6 +59,21 @@
       </div>
       <div class="drawer-content">
         <%= yield %>
+
+        <% if notice || alert %>
+          <div class="toast" data-controller="toast" data-turbo-temporary>
+            <% if notice %>
+              <div class="alert alert-info">
+                <%= notice %>
+              </div>
+            <% end %>
+            <% if alert %>
+              <div class="alert alert-warning">
+                <%= alert %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </body>
