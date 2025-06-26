@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     end
 
     scope module: :rooms do
-      resources :members, only: [ :index, :new, :create, :destroy ]
+      resources :members, only: [ :index, :new, :create, :destroy ] do
+        scope module: :members do
+          resource :play, only: [ :create, :destroy ]
+        end
+      end
     end
   end
 

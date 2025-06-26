@@ -55,6 +55,7 @@ class Conversations::CompletionsController < ApplicationController
 
     message = @conversation.messages.new(message_params)
     message.role = :user
+    message.character = @conversation.room.characters.where(members: { playing: true }).first
     message.status = :completed
     message.save
 
@@ -75,7 +76,7 @@ class Conversations::CompletionsController < ApplicationController
 
     openai = OpenAI::Client.new
 
-    @conversation.room.characters.each do |character|
+    @conversation.room.characters.where(members: { playing: false }).each do |character|
       response_message = @conversation.messages.create(
         character: character,
         role: :assistant,

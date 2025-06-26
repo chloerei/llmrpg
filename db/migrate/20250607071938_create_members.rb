@@ -4,6 +4,8 @@ class CreateMembers < ActiveRecord::Migration[8.0]
       t.references :room, null: false, foreign_key: true
       t.references :character, null: false, foreign_key: true
 
+      t.boolean :playing, default: false
+
       t.timestamps
     end
   end

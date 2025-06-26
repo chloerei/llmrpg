@@ -47,18 +47,38 @@
       Members
     </div>
     <div class="mt-2">
-      <a href="<%= room_members_path(@room) %>">
-        <div class="avatar-group -space-x-6">
-          <% @room.characters.each do |character| %>
-            <%= render "shared/avatar", character: character %>
+      <% if @room.characters.any? %>
+        <div class="flex items-center gap-2">
+          <% playing_character = @room.characters.where(members: { playing: true }).first %>
+          <% if playing_character %>
+            <div class="border-4 border-base-300 rounded-full">
+              <%= render "shared/avatar", character: playing_character %>
+            </div>
           <% end %>
+
+          <% characters = @room.characters.where(members: { playing: false }).order(members: { created_at: :asc }) %>
+          <div class="avatar-group -space-x-6">
+            <% characters.limit(5).each do |character| %>
+              <%= render "shared/avatar", character: character %>
+            <% end %>
+            <% if characters.count > 5 %>
+              <span class="avatar avatar-placeholder">
+                <div class="bg-base-300 text-base-content rounded-full size-10">
+                  <span class="text-xs">+<%= characters.count - 5 %></span>
+                </div>
+              </span>
+            <% end %>
+          </div>
+
+          <a href="<%= room_members_path(@room) %>" class="btn btn-ghost btn-square">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-pen-icon lucide-user-pen"><path d="M11.5 15H7a4 4 0 0 0-4 4v2"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="7" r="4"/></svg>
+          </a>
         </div>
-      </a>
-    </div>
-    <div class="mt-2">
-      <a href="<%= new_room_member_path(@room) %>" class="btn btn-soft">
-        Add Member
-      </a>
+      <% else %>
+        <a href="<%= new_room_member_path(@room) %>" class="btn btn-soft">
+          Add Member
+        </a>
+      <% end %>
     </div>
   </div>
 
