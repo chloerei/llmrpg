@@ -64,3 +64,7 @@ group :development do
 
   gem "hotwire-spark"
 end
+
+group :test do
+  gem "webmock"
+end

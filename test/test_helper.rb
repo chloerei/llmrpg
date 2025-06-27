@@ -1,7 +1,11 @@
 ENV["RAILS_ENV"] ||= "test"
+ENV["OPENAI_BASE_URL"] ||= "https://openai.local/api"
+ENV["OPENAI_API_KEY"] ||= "test_api_key"
+
 require_relative "../config/environment"
 require "rails/test_help"
 require_relative "test_helper/session_test_helper"
+require "webmock/minitest"
 
 module ActiveSupport
   class TestCase
