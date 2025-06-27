@@ -1,7 +1,4 @@
-class Conversations::CompletionsController < ApplicationController
-  include RoomScoped
-  include ConversationScoped
-
+class Rooms::Conversations::CompletionsController < Rooms::Conversations::BaseController
   def create
     response.headers["Content-Type"] = "text/event-stream"
 

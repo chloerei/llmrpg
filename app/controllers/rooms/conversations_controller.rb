@@ -1,6 +1,4 @@
-class ConversationsController < ApplicationController
-  include RoomScoped
-
+class Rooms::ConversationsController < Rooms::BaseController
   before_action :set_conversation, only: %i[ show edit update destroy ]
 
   def show

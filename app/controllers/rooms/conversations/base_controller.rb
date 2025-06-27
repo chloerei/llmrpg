@@ -1,9 +1,5 @@
-module ConversationScoped
-  extend ActiveSupport::Concern
-
-  included do
-    before_action :set_conversation
-  end
+class Rooms::Conversations::BaseController < Rooms::BaseController
+  before_action :set_conversation
 
   private
 

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ConversationsControllerTest < ActionDispatch::IntegrationTest
+class Rooms::ConversationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:user)
     @room = create(:room, user: @user)
