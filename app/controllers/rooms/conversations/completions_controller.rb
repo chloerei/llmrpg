@@ -56,11 +56,6 @@ class Rooms::Conversations::CompletionsController < Rooms::Conversations::BaseCo
     message.status = :completed
     message.save
 
-    if @conversation.title.blank?
-      @conversation.title = @conversation.messages.where(role: :user).first.content.truncate(50)
-      @conversation.save
-    end
-
     sse.write({
       action: "create",
       message: {
@@ -124,6 +119,10 @@ class Rooms::Conversations::CompletionsController < Rooms::Conversations::BaseCo
           html: render_to_string(partial: "messages/message", locals: { message: response_message })
         }
       })
+    end
+
+    if @conversation.title.blank?
+      GenerateConversationTitleJob.perform_later(@conversation)
     end
   ensure
     sse.close
