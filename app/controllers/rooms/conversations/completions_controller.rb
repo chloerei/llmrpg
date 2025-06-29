@@ -22,16 +22,7 @@ class Rooms::Conversations::CompletionsController < Rooms::Conversations::BaseCo
 
     messages = []
 
-    messages << {
-      role: "user",
-      content: <<~EOF
-        You are a role playing assistant in a chat room.
-
-        Use Markdown to format response.
-      EOF
-    }
-
-    character_settings = @conversation.room.characters.map do |character|
+    character_description = @conversation.room.characters.map do |character|
       <<~EOF
         name: #{character.name}
 
@@ -42,9 +33,21 @@ class Rooms::Conversations::CompletionsController < Rooms::Conversations::BaseCo
     messages << {
       role: "user",
       content: <<~EOF
-        ## Characters settings
+        You are a role playing assistant in a chat room.
 
-        #{character_settings}
+        Use Markdown format.
+
+        ## Room description
+
+        #{@room.description}
+
+        ## Conversation description
+
+        #{@conversation.description}
+
+        ## Characters description
+
+        #{character_description}
       EOF
     }
 

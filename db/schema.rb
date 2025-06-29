@@ -56,6 +56,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
     t.string "title", default: "", null: false
+    t.text "description", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_conversations_on_room_id"

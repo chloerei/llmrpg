@@ -39,6 +39,6 @@ class Rooms::ConversationsController < Rooms::BaseController
   end
 
   def conversation_params
-    params.expect(conversation: [ :title ])
+    params.expect(conversation: [ :title, :description ])
   end
 end

@@ -5,6 +5,7 @@ class CreateConversations < ActiveRecord::Migration[8.0]
       t.references :room, null: false, foreign_key: true
 
       t.string :title, null: false, default: ""
+      t.text :description, null: false, default: ""
 
       t.timestamps
     end
