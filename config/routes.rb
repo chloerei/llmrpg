@@ -21,5 +21,14 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :settings do
+    root "home#index"
+
+    namespace :account do
+      root "home#index"
+      resource :email, only: [ :show, :update ]
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

@@ -11,3 +11,19 @@
 @utility animate-fade-out {
   @apply transition-opacity duration-300 ease-in-out opacity-0;
 }
+
+.field_with_errors {
+  display: contents;
+
+  .input {
+    @apply input-error;
+  }
+
+  .textarea {
+    @apply textarea-error;
+  }
+
+  .select {
+    @apply select-error;
+  }
+}

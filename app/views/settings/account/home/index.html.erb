@@ -1,0 +1,28 @@
+<% content_for :title, "Settings" %>
+
+<div class="navbar shadow-xs sticky top-0 z-50 bg-base-100">
+  <div class="flex-none">
+    <a href="<%= settings_root_path %>" class="btn btn-ghost btn-square">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+    </a>
+  </div>
+  <div class="flex-1">
+    <div class="text-xl px-2">
+      Account Settings
+    </div>
+  </div>
+</div>
+
+<div class="max-w-3xl mx-auto p-4">
+  <ul class="list">
+    <li class="list-row hover:bg-base-200 relative">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+      </div>
+      <div>
+        <a href="<%= settings_account_email_path %>" class="font-medium after:absolute after:inset-0">Email</a>
+        <p class="text-sm">Change your email address.</p>
+      </div>
+    </li>
+  </ul>
+</div>
