@@ -23,9 +23,11 @@ class Rooms::Conversations::CompletionsController < Rooms::Conversations::BaseCo
     messages = []
 
     messages << {
-      role: "system",
+      role: "user",
       content: <<~EOF
         You are a role playing assistant in a chat room.
+
+        Use Markdown to format response.
       EOF
     }
 
