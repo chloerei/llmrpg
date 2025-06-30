@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     namespace :account do
       root "home#index"
       resource :email, only: [ :show, :update ]
+      resource :password, only: [ :show, :update ]
     end
   end
 
