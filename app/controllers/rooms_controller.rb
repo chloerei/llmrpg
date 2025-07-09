@@ -6,7 +6,11 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @conversations = @room.conversations.order(id: :desc)
+    @conversation = if params[:conversation_id]
+      @room.conversations.find(params[:conversation_id])
+    else
+      @room.conversations.order(id: :desc).first || @room.conversations.create(user: @room.user)
+    end
   end
 
   def new
