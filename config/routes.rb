@@ -7,17 +7,17 @@ Rails.application.routes.draw do
   resources :characters
   resources :rooms do
     scope module: :rooms do
-      resources :conversations do
-        scope module: :conversations do
-          resource :completion, only: [ :create ]
-        end
-      end
-
       resources :members, only: [ :index, :new, :create, :destroy ] do
         scope module: :members do
           resource :play, only: [ :create, :destroy ]
         end
       end
+    end
+  end
+
+  resources :conversations, only: [ :destroy ] do
+    scope module: :conversations do
+      resource :completion, only: [ :create ]
     end
   end
 

@@ -1,4 +1,4 @@
-class Rooms::Conversations::CompletionsController < Rooms::Conversations::BaseController
+class Conversations::CompletionsController < Conversations::BaseController
   def create
     response.headers["Content-Type"] = "text/event-stream"
 
@@ -39,7 +39,7 @@ class Rooms::Conversations::CompletionsController < Rooms::Conversations::BaseCo
 
         ## Room description
 
-        #{@room.description}
+        #{@conversation.room.description}
 
         ## Conversation description
 
