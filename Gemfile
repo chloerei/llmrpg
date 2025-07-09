@@ -50,9 +50,6 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
-
   gem "dotenv"
 
   gem "factory_bot_rails"
@@ -63,6 +60,9 @@ group :development do
   gem "web-console"
 
   gem "hotwire-spark"
+
+  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :test do
