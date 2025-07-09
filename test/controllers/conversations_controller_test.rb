@@ -7,6 +7,14 @@ class ConversationsControllerTest < ActionDispatch::IntegrationTest
     @conversation = create(:conversation, room: @room, user: @user)
   end
 
+  test "should create conversation" do
+    sign_in_as @user
+    assert_difference("Conversation.count", 1) do
+      post room_conversations_url(@room)
+    end
+    assert_redirected_to room_url(@room)
+  end
+
   test "should destroy conversation" do
     sign_in_as @user
 

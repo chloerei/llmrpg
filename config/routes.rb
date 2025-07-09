@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :characters
   resources :rooms do
+    resources :conversations, only: [ :create ]
+
     scope module: :rooms do
       resources :members, only: [ :index, :new, :create, :destroy ] do
         scope module: :members do

@@ -1,6 +1,12 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: %i[ destroy ]
 
+  def create
+    @room = Current.user.rooms.find(params[:room_id])
+    @conversation = @room.conversations.create(user: Current.user)
+    redirect_to room_path(@room)
+  end
+
   def destroy
     @conversation.destroy!
 
