@@ -10,6 +10,4 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
       nodejs \
       npm
 
-RUN bundle config set --local path vendor/bundle
-
 WORKDIR /rails
