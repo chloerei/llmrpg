@@ -106,7 +106,7 @@
         </div>
       </div>
       <div class="flex-1 p-4 overflow-auto">
-        <%= turbo_frame_tag "history", src: room_conversations_path(@room), loading: "lazy" %>
+        <%= turbo_frame_tag "history", src: room_conversations_path(@room, current_id: @conversation.id), loading: "lazy" %>
       </div>
     </div>
   </div>
