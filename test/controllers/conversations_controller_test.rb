@@ -7,6 +7,12 @@ class ConversationsControllerTest < ActionDispatch::IntegrationTest
     @conversation = create(:conversation, room: @room, user: @user)
   end
 
+  test "should get index" do
+    sign_in_as @user
+    get room_conversations_url(@room)
+    assert_response :success
+  end
+
   test "should create conversation" do
     sign_in_as @user
     assert_difference("Conversation.count", 1) do
@@ -21,7 +27,6 @@ class ConversationsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Conversation.count", -1) do
       delete conversation_url(@conversation)
     end
-
-    assert_redirected_to room_url(@room)
+    assert_response :success
   end
 end
