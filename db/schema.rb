@@ -15,17 +15,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.uuid "record_id", null: false
+    t.uuid "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -37,14 +37,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+  create_table "active_storage_variant_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "characters", force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "characters", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
     t.string "name", null: false
     t.text "description", null: false
     t.datetime "created_at", null: false
@@ -52,9 +52,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
     t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
-  create_table "conversations", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "room_id", null: false
+  create_table "conversations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "room_id", null: false
     t.string "title", default: "", null: false
     t.text "description", default: "", null: false
     t.datetime "created_at", null: false
@@ -63,9 +63,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
     t.index ["user_id"], name: "index_conversations_on_user_id"
   end
 
-  create_table "members", force: :cascade do |t|
-    t.bigint "room_id", null: false
-    t.bigint "character_id", null: false
+  create_table "members", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "room_id", null: false
+    t.uuid "character_id", null: false
     t.boolean "playing", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,9 +73,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
     t.index ["room_id"], name: "index_members_on_room_id"
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.bigint "conversation_id", null: false
-    t.bigint "character_id"
+  create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "conversation_id", null: false
+    t.uuid "character_id"
     t.integer "role", default: 0, null: false
     t.text "content", default: "", null: false
     t.integer "status", default: 0, null: false
@@ -85,8 +85,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "rooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
@@ -94,8 +94,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
-  create_table "sessions", force: :cascade do |t|
-    t.bigint "user_id", null: false
+  create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
     t.string "ip"
     t.string "user_agent"
     t.datetime "created_at", null: false
@@ -103,7 +103,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.citext "email", null: false
     t.string "password_digest", null: false
     t.datetime "created_at", null: false

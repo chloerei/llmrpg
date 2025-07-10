@@ -29,5 +29,9 @@ module Roleplay
 
     # Don't generate helper files.
     config.generators.helper = false
+    # Use uuid as the primary key type for new tables.
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
   end
 end
