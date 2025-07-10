@@ -92,8 +92,8 @@
   <div class="drawer-side">
     <label for="history-drawer" class="drawer-overlay"></label>
 
-    <div class="bg-base-100 text-base-content min-h-full w-80">
-      <div class="navbar">
+    <div class="flex flex-col bg-base-100 text-base-content h-full w-80">
+      <div class="navbar shadow-xs">
         <div class="flex-1">
           <div class="text-xl px-2">
             History
@@ -105,7 +105,7 @@
           </label>
         </div>
       </div>
-      <div class="p-4">
+      <div class="flex-1 p-4 overflow-auto">
         <%= turbo_frame_tag "history", src: room_conversations_path(@room), loading: "lazy" %>
       </div>
     </div>
