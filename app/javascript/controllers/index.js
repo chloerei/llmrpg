@@ -16,5 +16,8 @@ application.register("hello", HelloController)
 import MessageController from "./message_controller"
 application.register("message", MessageController)
 
+import PaginationController from "./pagination_controller"
+application.register("pagination", PaginationController)
+
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)

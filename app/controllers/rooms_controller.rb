@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   before_action :set_room, only: %i[ show edit update destroy ]
 
   def index
-    @rooms = Current.user.rooms.order(id: :desc)
+    @pagy, @rooms = pagy(Current.user.rooms.order(id: :desc))
   end
 
   def show
