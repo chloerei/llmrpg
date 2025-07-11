@@ -19,7 +19,17 @@
 </div>
 
 <div class="max-w-3xl mx-auto p-4">
-  <ul class="list">
+  <ul class="list" data-controller="pagination">
     <%= render @characters %>
+
+    <% if @pagy.next %>
+      <a href="<%= pagy_url_for(@pagy, @pagy.next) %>" data-pagination-target="nextPageLink" class="block text-sm opacity-80 text-center p-4">
+        Loading...
+      </a>
+    <% else %>
+      <div class="text-sm opacity-80 text-center p-4">
+        - END -
+      </div>
+    <% end %>
   </ul>
 </div>

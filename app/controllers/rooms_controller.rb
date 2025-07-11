@@ -11,6 +11,8 @@ class RoomsController < ApplicationController
     else
       @room.conversations.order(id: :desc).first || @room.conversations.create(user: @room.user)
     end
+
+    @pagy, @messages = pagy(@conversation.messages.order(id: :desc))
   end
 
   def new

@@ -2,7 +2,7 @@ class CharactersController < ApplicationController
   before_action :set_character, only: %i[ show edit update destroy ]
 
   def index
-    @characters = Current.user.characters.order(id: :desc)
+    @pagy, @characters = pagy(Current.user.characters.order(id: :desc))
   end
 
   def show

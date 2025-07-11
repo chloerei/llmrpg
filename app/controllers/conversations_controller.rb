@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
   before_action :set_conversation, only: %i[ destroy ]
 
   def index
-    @conversations = @room.conversations.order(id: :desc)
+    @pagy, @conversations = pagy(@room.conversations.order(id: :desc))
     @current_conversation = if params[:current_id]
       @room.conversations.find(params[:current_id])
     end
