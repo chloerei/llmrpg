@@ -70,7 +70,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_members_on_character_id"
-    t.index ["room_id"], name: "index_members_on_room_id"
+    t.index ["room_id", "character_id"], name: "index_members_on_room_id_and_character_id", unique: true
   end
 
   create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
