@@ -14,7 +14,7 @@
 <div class="max-w-3xl mx-auto p-4">
   <%= turbo_frame_tag "history" do %>
     <ul id="conversations" class="list" data-controller="pagination">
-      <%= render @conversations %>
+      <%= render partial: "conversation", collection: @conversations, cached: true %>
 
       <% if @pagy.next %>
         <a href="<%= pagy_url_for(@pagy, @pagy.next) %>" data-pagination-target="nextPageLink" class="block text-sm opacity-80 text-center p-4">

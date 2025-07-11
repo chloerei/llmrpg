@@ -20,7 +20,7 @@
 
 <div class="max-w-3xl mx-auto p-4">
   <div id="rooms" class="list" data-controller="pagination">
-    <%= render @rooms %>
+    <%= render partial: "room", collection: @rooms, cached: true %>
 
     <% if @pagy.next %>
       <a href="<%= pagy_url_for(@pagy, @pagy.next) %>" data-pagination-target="nextPageLink" class="block text-sm opacity-80 text-center p-4">
