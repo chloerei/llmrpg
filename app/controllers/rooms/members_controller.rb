@@ -1,6 +1,6 @@
 class Rooms::MembersController < Rooms::BaseController
   def index
-    @members = @room.members.includes(:character).order(playing: :desc, created_at: :asc)
+    @members = @room.members.includes(:character).order(members: { created_at: :asc })
   end
 
   def new
