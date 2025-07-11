@@ -3,6 +3,6 @@ class Character < ApplicationRecord
   has_many :members, dependent: :destroy
 
   has_one_attached :avatar do |attachable|
-    attachable.variant :thumb, resize_to_limit: [ 160, 160 ]
+    attachable.variant :thumb, resize_to_limit: [ 512, 512 ]
   end
 end

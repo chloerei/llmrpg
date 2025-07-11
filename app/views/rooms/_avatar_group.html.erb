@@ -1,0 +1,24 @@
+<%# locals: (room:) %>
+
+<%
+  characters_count = room.characters.count
+%>
+
+<div class="avatar-group -space-x-3">
+  <% room.characters.order(members: { created_at: :asc }).limit(3).each do |character| %>
+    <%= render "shared/avatar", character: character, size: :small %>
+  <% end %>
+  <% if characters_count > 3 %>
+    <span class="avatar avatar-placeholder">
+      <div class="bg-base-300 text-base-content rounded-full size-6">
+        <span class="text-xs">+<%= characters_count - 3 %></span>
+      </div>
+    </span>
+  <% elsif characters_count == 0 %>
+    <span class="avatar avatar-placeholder">
+      <div class="bg-base-300 text-base-content rounded-full size-6">
+        <span class="text-xs">0</span>
+      </div>
+    </span>
+  <% end %>
+</div>
