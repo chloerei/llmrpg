@@ -7,6 +7,8 @@
     </h3>
   </div>
   <div class="flex-none">
-    <%= render "avatar_group", room: room %>
+    <% if room.characters.count > 0 %>
+      <%= render "avatar_group", room: room %>
+    <% end %>
   </div>
 </div>
