@@ -1,17 +1,11 @@
-<li class="list-row hover:bg-base-200">
+<li class="list-row hover:bg-base-200 items-center">
   <div>
     <%= render "shared/avatar", character: character %>
   </div>
 
-  <div>
+  <div class="text-lg font-medium">
     <a href="<%= character_path(character) %>" class="block after:absolute after:inset-0">
-      <div class="text-lg font-medium">
-        <%= character.name %>
-      </div>
-
-      <div class="text-sm text-gray-500">
-        <%= truncate character.description %>
-      </div>
+      <%= character.name %>
     </a>
   </div>
 </li>

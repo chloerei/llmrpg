@@ -18,7 +18,7 @@
         <li id="<%= dom_id(conversation) %>" class="list-row items-center relative hover:bg-base-200 <%= "bg-base-300" if @current_conversation == conversation %>">
           <div class="list-col-grow">
             <a href="<%= room_path(@room, conversation_id: conversation.id) %>" class="line-clamp-1 after:absolute after:inset-0" data-turbo-frame="_top">
-              <%= conversation.title %>
+              <%= conversation.title.presence || "Untitled" %>
             </a>
           </div>
           <div class="dropdown dropdown-end">
