@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "home#index"
 
-  resource :session
+  resource :session, only: [ :new, :create, :destroy ]
+  resource :registration, only: [ :new, :create ]
   resources :passwords, param: :token
 
   resources :characters

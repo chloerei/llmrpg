@@ -1,22 +1,22 @@
-<% @page_title = "Sign in" %>
+<% @page_title = "Sign up" %>
 
 <div class="hero bg-base-200 min-h-screen">
   <div class="hero-content">
     <div class="max-w-sm">
       <div class="text-center">
         <h1 class="text-3xl font-medium">
-          Sign in
+          Sign up
         </h1>
       </div>
 
       <div class="card bg-base-100 shadow max-w-sm mt-4">
         <div class="card-body">
-          <%= form_with url: session_path do |form| %>
+          <%= form_with model: @user, url: registration_path do |form| %>
             <fieldset class="fieldset">
               <legend class="fieldset-legend">
                 Email
               </legend>
-              <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email], class: "input w-full" %>
+              <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", class: "input w-full" %>
             </fieldset>
 
             <fieldset class="fieldset">
@@ -24,13 +24,17 @@
                 Password
               </legend>
               <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72, class: "input w-full" %>
-              <a href="<%= new_password_path %>" class="text-sm opacity-80">
-                Forgot password?
-              </a>
+            </fieldset>
+
+            <fieldset class="fieldset">
+              <legend class="fieldset-legend">
+                Password confirmation
+              </legend>
+              <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Repeat your password", maxlength: 72, class: "input w-full" %>
             </fieldset>
 
             <button type="submit" class="btn btn-primary w-full mt-4">
-              Sign in
+              Sign up
             </button>
           <% end %>
 
@@ -38,8 +42,8 @@
       </div>
 
       <div class="text-center mt-4">
-        <a href="<%= new_registration_path %>" class=" opacity-80">
-          Sign up account
+        <a href="<%= new_session_path %>" class=" opacity-80">
+          Sign in account
         </a>
       </div>
     </div>

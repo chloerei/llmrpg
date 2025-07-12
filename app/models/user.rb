@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_many :conversations, dependent: :destroy
 
   normalizes :email, with: ->(e) { e.strip }
+
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 end
