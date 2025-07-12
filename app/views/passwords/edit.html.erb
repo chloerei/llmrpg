@@ -1,9 +1,37 @@
-<h1>Update your password</h1>
+<% @page_title = "Update password" %>
 
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<div class="hero bg-base-200 min-h-screen">
+  <div class="hero-content">
+    <div class="w-96">
+      <div class="text-center">
+        <h1 class="text-3xl font-medium">
+          Reset password
+        </h1>
+      </div>
 
-<%= form_with url: password_path(params[:token]), method: :put do |form| %>
-  <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Enter new password", maxlength: 72 %><br>
-  <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Repeat new password", maxlength: 72 %><br>
-  <%= form.submit "Save" %>
-<% end %>
+      <div class="card bg-base-100 shadow mt-4">
+        <div class="card-body">
+          <%= form_with url: password_path(params[:token]), method: :put do |form| %>
+            <fieldset class="fieldset">
+              <legend class="fieldset-legend">
+                New password
+              </legend>
+              <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Enter new password", maxlength: 72, class: "input w-full" %>
+            </fieldset>
+
+            <fieldset class="fieldset">
+              <legend class="fieldset-legend">
+                Confirm password
+              </legend>
+              <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Repeat new password", maxlength: 72, class: "input w-full" %>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary w-full mt-4">
+              Save changes
+            </button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

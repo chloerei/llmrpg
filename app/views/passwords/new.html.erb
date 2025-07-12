@@ -1,8 +1,36 @@
-<h1>Forgot your password?</h1>
+<% @page_title = "Password reset" %>
 
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<div class="hero bg-base-200 min-h-screen">
+  <div class="hero-content">
+    <div class="w-96">
+      <div class="text-center">
+        <h1 class="text-3xl font-medium">
+          Password reset
+        </h1>
+      </div>
 
-<%= form_with url: passwords_path do |form| %>
-  <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email] %><br>
-  <%= form.submit "Email reset instructions" %>
-<% end %>
+      <div class="card bg-base-100 shadow mt-4">
+        <div class="card-body">
+          <%= form_with url: passwords_path do |form| %>
+            <fieldset class="fieldset">
+              <legend class="fieldset-legend">
+                Email
+              </legend>
+              <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email], class: "input w-full" %>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary w-full mt-4">
+              Send reset Email
+            </button>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="<%= new_session_path %>" class=" opacity-80">
+          Sign in account
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

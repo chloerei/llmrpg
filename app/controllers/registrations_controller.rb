@@ -1,7 +1,7 @@
 class RegistrationsController < ApplicationController
   layout "application"
 
-  skip_before_action :require_authentication
+  allow_unauthenticated_access
 
   def new
     @user = User.new
