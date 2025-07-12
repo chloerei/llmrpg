@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Roleplay" %></title>
+    <title><%= @page_title || "Roleplay" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -20,61 +20,26 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <%= yield :head %>
   </head>
 
   <body>
-    <div class="drawer lg:drawer-open">
-      <input id="drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-side">
-        <label for="drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-        <div class="bg-base-200 text-base-content min-h-full w-80">
-          <div class="navbar">
-            <div class="flex-1">
-              <div class="text-xl px-2 font-medium">
-                Roleplay
-              </div>
-            </div>
-          </div>
-          <ul class="menu menu-md w-full p-4">
-            <li>
-              <a href="<%= rooms_path %>" class="py-2 <%= "menu-active" if request.path.start_with?("/rooms") %>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-messages-square-icon lucide-messages-square"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg>
-                Rooms
-              </a>
-            </li>
-            <li>
-              <a href="<%= characters_path %>" class="py-2 <%= "menu-active" if request.path.start_with?("/characters") %>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
-                Characters
-              </a>
-            </li>
-            <li>
-              <a href="<%= settings_root_path %>" class="py-2 <%= "menu-active" if request.path.start_with?("/settings") %>">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-                Settings
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="drawer-content">
-        <%= yield %>
+    <%= content_for?(:body) ? yield(:body) : yield %>
 
-        <% if notice || alert %>
-          <div class="toast" data-controller="toast" data-turbo-temporary>
-            <% if notice %>
-              <div class="alert alert-success">
-                <%= notice %>
-              </div>
-            <% end %>
-            <% if alert %>
-              <div class="alert alert-warning">
-                <%= alert %>
-              </div>
-            <% end %>
+    <% if notice || alert %>
+      <div class="toast" data-controller="toast" data-turbo-temporary>
+        <% if notice %>
+          <div class="alert alert-success">
+            <%= notice %>
+          </div>
+        <% end %>
+        <% if alert %>
+          <div class="alert alert-warning">
+            <%= alert %>
           </div>
         <% end %>
       </div>
-    </div>
+    <% end %>
   </body>
 </html>
