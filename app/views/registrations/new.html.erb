@@ -17,6 +17,11 @@
                 Email
               </legend>
               <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", class: "input w-full" %>
+              <% if form.object.errors.include?(:email) %>
+                <div class="text-error text-sm">
+                  <%= form.object.errors[:email].first %>
+                </div>
+              <% end %>
             </fieldset>
 
             <fieldset class="fieldset">

@@ -5,4 +5,6 @@ class Character < ApplicationRecord
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 512, 512 ]
   end
+
+  validates :name, presence: true
 end

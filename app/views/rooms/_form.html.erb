@@ -1,22 +1,16 @@
 <%= form_with(model: room) do |form| %>
-  <% if room.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
-
-      <ul>
-        <% room.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <fieldset class="fieldset">
     <legend class="fieldset-legend">
       Name
     </legend>
 
     <%= form.text_field :name, class: "input", required: true %>
+
+    <% if form.object.errors.include?(:name) %>
+      <div class="text-error text-sm">
+        <%= form.object.errors[:name].first %>
+      </div>
+    <% end %>
   </fieldset>
 
   <fieldset class="fieldset">
@@ -25,6 +19,12 @@
     </legend>
 
     <%= form.text_area :description, class: "textarea", rows: 3 %>
+
+    <% if form.object.errors.include?(:description) %>
+      <div class="text-error text-sm">
+        <%= form.object.errors[:description].first %>
+      </div>
+    <% end %>
   </fieldset>
 
   <div class="mt-4">
