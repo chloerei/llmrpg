@@ -16,7 +16,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to root_url
+    assert_redirected_to rooms_url
   end
 
   test "should not create user with dup email" do
