@@ -2,6 +2,7 @@
 zh-CN:
   general:
     account: 账户
+    account_settings: 账户设置
     add_member: 添加成员
     avatar: 头像
     character: 角色
@@ -29,7 +30,8 @@ zh-CN:
     new_room: 新房间
     password: 密码
     password_settings: 密码设置
-    playing: 游戏中
+    play_as_character: 扮演角色
+    playing: 扮演中
     remove_member: 移除成员
     reset_password: 重置密码
     rooms: 房间

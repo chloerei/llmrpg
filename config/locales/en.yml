@@ -2,6 +2,7 @@
 en:
   general:
     account: Account
+    account_settings: Account settings
     add_member: Add member
     avatar: Avatar
     character: Character
@@ -29,6 +30,7 @@ en:
     new_room: New room
     password: Password
     password_settings: Password settings
+    play_as_character: Play as character
     playing: Playing
     remove_member: Remove member
     reset_password: Reset password
