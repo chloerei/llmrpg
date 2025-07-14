@@ -6,7 +6,7 @@
   </div>
   <div class="flex-1">
     <div class="text-xl px-2">
-      Add Members
+      <%= t "general.add_member" %>
     </div>
   </div>
 </div>
@@ -15,7 +15,7 @@
   <%= form_with url: room_members_path do |form| %>
     <fieldset class="fieldset">
       <legend class="fieldset-legend">
-        Character
+        <%= t "general.character" %>
       </legend>
       <div
         data-controller="character-select"
@@ -27,7 +27,7 @@
 
     <div class="mt-4">
       <button type="submit" class="btn btn-primary">
-        Add Member
+        <%= t "general.add_member" %>
       </button>
     </div>
   <% end %>

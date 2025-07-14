@@ -1,5 +1,55 @@
 ---
 en:
+  general:
+    account: Account
+    add_member: Add member
+    avatar: Avatar
+    character: Character
+    characters: Characters
+    confirm_password: Confirm password
+    conversations: Conversations
+    create_character: Create character
+    create_room: Create room
+    current_password: Current password
+    delete: Delete
+    description: Description
+    edit: Edit
+    edit_character: Edit character
+    edit_room: Edit room
+    email: Email
+    email_settings: Email settings
+    end: "- End -"
+    forgot_password: Forgot password
+    history: History
+    loading: Loading...
+    members: Members
+    name: Name
+    new_character: New character
+    new_password: New password
+    new_room: New room
+    password: Password
+    password_settings: Password settings
+    playing: Playing
+    remove_member: Remove member
+    reset_password: Reset password
+    rooms: Rooms
+    save_changes: Save changes
+    send_reset_email: Send reset email
+    settings: Settings
+    sign_in: Sign in
+    sign_out: Sign out
+    sign_up: Sign up
+    update_character: Update character
+    update_password: Update password
+    update_room: Update room
+  registrations:
+    new:
+      email_placeholder: name@example.com
+      password_confirmation_placeholder: Your password again
+      password_placeholder: Your password
+  rooms:
+    show:
+      no_character_notice: There are no characters in this room.
   settings:
     account:
       emails:

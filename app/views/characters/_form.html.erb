@@ -1,7 +1,7 @@
 <%= form_with(model: character) do |form| %>
   <fieldset class="fieldset">
     <legend class="fieldset-legend">
-      Avatar
+      <%= t "general.avatar" %>
     </legend>
 
     <%= render "shared/avatar", character: character, size: :large %>
@@ -11,7 +11,7 @@
 
   <fieldset class="fieldset">
     <legend class="fieldset-legend">
-      Name
+      <%= t "general.name" %>
     </legend>
     <%= form.text_field :name, class: "input", required: true %>
     <% if form.object.errors.include?(:name) %>
@@ -23,7 +23,7 @@
 
   <fieldset class="fieldset">
     <legend class="fieldset-legend">
-      Description
+      <%= t "general.description" %>
     </legend>
     <%= form.text_area :description, class: "textarea" %>
     <% if form.object.errors.include?(:description) %>
@@ -35,7 +35,7 @@
 
   <div class="mt-4">
     <button type="submit" class="btn btn-primary">
-      <%= character.new_record? ? "Create" : "Update" %> Character
+      <%= character.new_record? ? t("general.create_character") : t("general.update_character") %>
     </button>
   </div>
 <% end %>

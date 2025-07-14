@@ -8,7 +8,7 @@
   </div>
   <div class="flex-1">
     <div class="text-xl px-2">
-      Email Settings
+      <%= t "general.email_settings" %>
     </div>
   </div>
 </div>
@@ -17,21 +17,21 @@
   <%= form_with model: Current.user, url: settings_account_email_path do |form| %>
     <fieldset class="fieldset">
       <legend class="fieldset-legend">
-        Email
+        <%= t "general.email" %>
       </legend>
       <%= form.text_field :email, class: "input" %>
     </fieldset>
 
     <fieldset class="fieldset">
       <legend class="fieldset-legend">
-        Current Password
+        <%= t "general.current_password" %>
       </legend>
       <%= form.password_field :password_challenge, class: "input" %>
     </fieldset>
 
     <div class="mt-4">
       <button type="submit" class="btn btn-primary">
-        Save Changes
+        <%= t "general.save_changes" %>
       </button>
     </div>
   <% end %>

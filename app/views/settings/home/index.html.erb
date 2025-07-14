@@ -3,7 +3,7 @@
 <div class="navbar shadow-xs sticky top-0 z-50 bg-base-100">
   <div class="flex-1">
     <div class="text-xl px-2">
-      Settings
+      <%= t "general.settings" %>
     </div>
   </div>
 </div>
@@ -17,7 +17,7 @@
       </div>
       <div>
         <a href="<%= settings_account_root_path %>" class="font-medium after:absolute after:inset-0">
-          Account
+          <%= t "general.account" %>
         </a>
       </div>
     </li>
@@ -27,7 +27,7 @@
       </div>
       <div>
         <a href="<%= session_path %>" class="font-medium after:absolute after:inset-0" data-turbo-method="delete" data-turbo-confirm="Sign out account?">
-          Sign out
+          <%= t "general.sign_out" %>
         </a>
       </div>
     </li>

@@ -6,7 +6,7 @@
   </div>
   <div class="flex-1">
     <div class="text-xl px-2">
-      Members
+      <%= t "general.members" %>
     </div>
   </div>
   <div class="flex-none">
@@ -32,7 +32,9 @@
         </div>
         <% if member.playing? %>
           <div>
-            <span class="badge badge-neutral">Playing</span>
+            <span class="badge badge-neutral">
+              <%= t "general.playing" %>
+            </span>
           </div>
         <% end %>
         <div class="dropdown dropdown-end">
@@ -58,7 +60,7 @@
             <li>
               <a href="<%= room_member_path(@room, member) %>" data-turbo-method="delete" data-turbo-confirm="Are you sure you want to remove this member?">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-minus-icon lucide-user-minus"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
-                Remove Member
+                <%= t "general.remove_member" %>
               </a>
             </li>
           </ul>

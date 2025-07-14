@@ -5,7 +5,7 @@
     <div class="w-96">
       <div class="text-center">
         <h1 class="text-3xl font-medium">
-          Sign up
+          <%= t "general.sign_up" %>
         </h1>
       </div>
 
@@ -14,9 +14,9 @@
           <%= form_with model: @user, url: registration_path do |form| %>
             <fieldset class="fieldset">
               <legend class="fieldset-legend">
-                Email
+                <%= t "general.email" %>
               </legend>
-              <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", class: "input w-full" %>
+              <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: t(".email_placeholder"), class: "input w-full" %>
               <% if form.object.errors.include?(:email) %>
                 <div class="text-error text-sm">
                   <%= form.object.errors[:email].first %>
@@ -26,20 +26,20 @@
 
             <fieldset class="fieldset">
               <legend class="fieldset-legend">
-                Password
+                <%= t "general.password" %>
               </legend>
-              <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72, class: "input w-full" %>
+              <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: t(".password_placeholder"), maxlength: 72, class: "input w-full" %>
             </fieldset>
 
             <fieldset class="fieldset">
               <legend class="fieldset-legend">
-                Password confirmation
+                <%= t "general.confirm_password" %>
               </legend>
-              <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Repeat your password", maxlength: 72, class: "input w-full" %>
+              <%= form.password_field :password_confirmation, required: true, autocomplete: "current-password", placeholder: t(".password_confirmation_placeholder"), maxlength: 72, class: "input w-full" %>
             </fieldset>
 
             <button type="submit" class="btn btn-primary w-full mt-4">
-              Sign up
+              <%= t "general.sign_up" %>
             </button>
           <% end %>
 
@@ -48,7 +48,7 @@
 
       <div class="text-center mt-4">
         <a href="<%= new_session_path %>" class=" opacity-80">
-          Sign in account
+          <%= t "general.sign_in" %>
         </a>
       </div>
     </div>

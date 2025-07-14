@@ -3,7 +3,7 @@
 <div class="navbar shadow-xs sticky top-0 z-50 bg-base-100">
   <div class="flex-1">
     <div class="text-xl px-2">
-      Characters
+      <%= t "general.characters" %>
     </div>
   </div>
   <div class="flex-none">
@@ -19,11 +19,11 @@
 
     <% if @pagy.next %>
       <a href="<%= pagy_url_for(@pagy, @pagy.next) %>" data-pagination-target="nextPageLink" class="block text-sm opacity-80 text-center p-4">
-        Loading...
+        <%= t "general.loading" %>
       </a>
     <% else %>
       <div class="text-sm opacity-80 text-center p-4">
-        - END -
+        <%= t "general.end" %>
       </div>
     <% end %>
   </ul>

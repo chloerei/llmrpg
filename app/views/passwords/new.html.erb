@@ -5,7 +5,7 @@
     <div class="w-96">
       <div class="text-center">
         <h1 class="text-3xl font-medium">
-          Password reset
+          <%= t "general.reset_password" %>
         </h1>
       </div>
 
@@ -14,13 +14,13 @@
           <%= form_with url: passwords_path do |form| %>
             <fieldset class="fieldset">
               <legend class="fieldset-legend">
-                Email
+                <%= t "general.email" %>
               </legend>
               <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email], class: "input w-full" %>
             </fieldset>
 
             <button type="submit" class="btn btn-primary w-full mt-4">
-              Send reset Email
+              <%= t "general.send_reset_email" %>
             </button>
           <% end %>
         </div>
@@ -28,7 +28,7 @@
 
       <div class="text-center mt-4">
         <a href="<%= new_session_path %>" class=" opacity-80">
-          Sign in account
+          <%= t "general.sign_in" %>
         </a>
       </div>
     </div>
