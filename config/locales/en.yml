@@ -49,7 +49,7 @@ en:
       password_placeholder: Your password
   rooms:
     show:
-      no_character_notice: There are no characters in this room.
+      no_member_notice: There are no member in this room.
   settings:
     account:
       emails:

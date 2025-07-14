@@ -58,7 +58,7 @@
           <% if @room.characters.count == 0 %>
             <div>
               <div class="text-sm opacity-80">
-                <%= t ".no_character_notice" %>
+                <%= t ".no_member_notice" %>
               </div>
               <div class="mt-2">
                 <a href="<%= new_room_member_path(@room) %>" class="btn">
