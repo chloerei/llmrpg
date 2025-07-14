@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Authentication
+  include SwitchLocale
   include Pagy::Backend
 
   layout "app"
