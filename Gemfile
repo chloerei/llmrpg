@@ -65,6 +65,8 @@ group :development do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "i18n-tasks", github: "chloerei/i18n-tasks"
 end
 
 group :test do
