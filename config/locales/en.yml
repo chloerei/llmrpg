@@ -1,5 +1,12 @@
 ---
 en:
+  characters:
+    create:
+      failure: Character creation failed.
+      success: Character created successfully.
+    update:
+      failure: Character update failed.
+      success: Character updated successfully.
   general:
     account: Account
     account_settings: Account settings
@@ -49,14 +56,38 @@ en:
   locales:
     en: English
     zh-CN: 中文（简体）
+  passwords:
+    create:
+      email_sent: Reset password email sent successfully.
+    set_user_by_token:
+      invalid_token: Invalid token.
+    update:
+      failure: Failed to update password.
+      success: Password updated successfully.
   registrations:
+    create:
+      failure: Registration failed.
     new:
       email_placeholder: name@example.com
       password_confirmation_placeholder: Your password again
       password_placeholder: Your password
   rooms:
+    create:
+      failure: Room creation failed.
+      success: Room created successfully.
+    members:
+      create:
+        success: Members added successfully.
+      destroy:
+        success: Member removed successfully.
     show:
       no_member_notice: There are no member in this room.
+    update:
+      failure: Room update failed.
+      success: Room updated successfully.
+  sessions:
+    create:
+      failure: Sign in failed. Please check your email and password.
   settings:
     account:
       emails:

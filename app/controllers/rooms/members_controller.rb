@@ -13,13 +13,13 @@ class Rooms::MembersController < Rooms::BaseController
       @room.members.create(character: character)
     end
 
-    redirect_to room_members_path(@room), notice: "Members were successfully added."
+    redirect_to room_members_path(@room), notice: t(".success")
   end
 
   def destroy
     @member = @room.members.find(params[:id])
     @member.destroy
-    redirect_to room_members_path(@room), notice: "Member was successfully removed."
+    redirect_to room_members_path(@room), notice: t(".success")
   end
 
   private

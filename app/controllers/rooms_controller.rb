@@ -26,16 +26,18 @@ class RoomsController < ApplicationController
     @room = Current.user.rooms.new(room_params)
 
     if @room.save
-      redirect_to @room, notice: "Room was successfully created."
+      redirect_to @room, notice: t(".success")
     else
+      flash.now[:alert] = t(".failure")
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @room.update(room_params)
-      redirect_to @room, notice: "Room was successfully updated."
+      redirect_to @room, notice: t(".success")
     else
+      flash.now[:alert] = t(".failure")
       render :edit, status: :unprocessable_entity
     end
   end

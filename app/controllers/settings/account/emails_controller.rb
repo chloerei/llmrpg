@@ -4,9 +4,9 @@ class Settings::Account::EmailsController < ApplicationController
 
   def update
     if Current.user.update(email_params.with_defaults(password_challenge: ""))
-      redirect_to settings_account_email_path, notice: t("settings.account.emails.update.success")
+      redirect_to settings_account_email_path, notice: t(".success")
     else
-      flash.now[:alert] = t("settings.account.emails.update.failure")
+      flash.now[:alert] = t(".failure")
       render :show, status: :unprocessable_entity
     end
   end

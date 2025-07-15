@@ -4,9 +4,9 @@ class Settings::Account::PasswordsController < ApplicationController
 
   def update
     if Current.user.update password_params.with_defaults(password_challenge: "")
-      redirect_to settings_account_password_path, notice: t("settings.account.passwords.update.success")
+      redirect_to settings_account_password_path, notice: t(".success")
     else
-      flash.now[:alert] = t("settings.account.passwords.update.failure")
+      flash.now[:alert] = t(".failure")
       render :show, status: :unprocessable_entity
     end
   end

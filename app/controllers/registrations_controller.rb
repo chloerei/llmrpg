@@ -15,7 +15,7 @@ class RegistrationsController < ApplicationController
       start_new_session_for(@user)
       redirect_to after_authentication_url
     else
-      flash.now[:alert] = "There were errors with your registration."
+      flash.now[:alert] = t(".failure")
       render :new, status: :unprocessable_entity
     end
   end

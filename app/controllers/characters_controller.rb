@@ -19,16 +19,18 @@ class CharactersController < ApplicationController
     @character = Current.user.characters.new(character_params)
 
     if @character.save
-      redirect_to @character, notice: "Character was successfully created."
+      redirect_to @character, notice: t(".success")
     else
+      flash.now[:alert] = t(".failure")
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @character.update(character_params)
-      redirect_to @character, notice: "Character was successfully updated."
+      redirect_to @character, notice: t(".success")
     else
+      flash.now[:alert] = t(".failure")
       render :edit, status: :unprocessable_entity
     end
   end

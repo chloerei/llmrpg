@@ -1,5 +1,12 @@
 ---
 zh-CN:
+  characters:
+    create:
+      failure: 角色创建失败。
+      success: 角色创建成功。
+    update:
+      failure: 角色更新失败。
+      success: 角色更新成功。
   general:
     account: 账户
     account_settings: 账户设置
@@ -49,14 +56,38 @@ zh-CN:
   locales:
     en: English
     zh-CN: 中文（简体）
+  passwords:
+    create:
+      email_sent: 重置密码邮件已发送。
+    set_user_by_token:
+      invalid_token: 无效的令牌。
+    update:
+      failure: 密码更新失败。
+      success: 密码更新成功。
   registrations:
+    create:
+      failure: 注册失败。
     new:
       email_placeholder: name@example.com
       password_confirmation_placeholder: 再次输入密码
       password_placeholder: 您的密码
   rooms:
+    create:
+      failure: 房间创建失败。
+      success: 房间创建成功。
+    members:
+      create:
+        success: 成员添加成功。
+      destroy:
+        success: 成员移除成功。
     show:
       no_member_notice: 此房间中没有成员。
+    update:
+      failure: 房间更新失败。
+      success: 房间更新成功。
+  sessions:
+    create:
+      failure: 登录失败。请检查您的电子邮箱和密码。
   settings:
     account:
       emails:
