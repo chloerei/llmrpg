@@ -23,6 +23,7 @@ zh-CN:
     forgot_password: 忘记密码
     history: 历史记录
     loading: 加载中...
+    locale: 语言
     members: 成员
     name: 名称
     new_character: 新角色
@@ -32,6 +33,7 @@ zh-CN:
     password_settings: 密码设置
     play_as_character: 扮演角色
     playing: 扮演中
+    preference: 偏好设置
     remove_member: 移除成员
     reset_password: 重置密码
     rooms: 房间
@@ -44,6 +46,9 @@ zh-CN:
     update_character: 更新角色
     update_password: 更新密码
     update_room: 更新房间
+  locales:
+    en: English
+    zh-CN: 中文（简体）
   registrations:
     new:
       email_placeholder: name@example.com
@@ -62,3 +67,7 @@ zh-CN:
         update:
           failure: 更新密码失败。
           success: 密码更新成功。
+    preferences:
+      update:
+        failure: 更新偏好设置失败。
+        success: 偏好设置更新成功。

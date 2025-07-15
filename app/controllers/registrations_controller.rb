@@ -9,6 +9,7 @@ class RegistrationsController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.locale = I18n.locale
 
     if @user.save
       start_new_session_for(@user)

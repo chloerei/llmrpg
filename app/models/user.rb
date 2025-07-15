@@ -8,4 +8,5 @@ class User < ApplicationRecord
   normalizes :email, with: ->(e) { e.strip }
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s) }
 end

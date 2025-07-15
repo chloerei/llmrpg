@@ -8,7 +8,7 @@ module SwitchLocale
   private
 
   def switch_locale(&action)
-    locale = extract_locale_from_accept_language_header || I18n.default_locale
+    locale = Current.user&.locale || extract_locale_from_accept_language_header || I18n.default_locale
     I18n.with_locale(locale, &action)
   end
 

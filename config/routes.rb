@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resource :email, only: [ :show, :update ]
       resource :password, only: [ :show, :update ]
     end
+    resource :preference, only: [ :show, :update ]
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

@@ -106,6 +106,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.citext "email", null: false
     t.string "password_digest", null: false
+    t.string "locale", default: "en", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

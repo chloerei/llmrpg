@@ -23,6 +23,7 @@ en:
     forgot_password: Forgot password
     history: History
     loading: Loading...
+    locale: Locale
     members: Members
     name: Name
     new_character: New character
@@ -32,6 +33,7 @@ en:
     password_settings: Password settings
     play_as_character: Play as character
     playing: Playing
+    preference: Preference
     remove_member: Remove member
     reset_password: Reset password
     rooms: Rooms
@@ -44,6 +46,9 @@ en:
     update_character: Update character
     update_password: Update password
     update_room: Update room
+  locales:
+    en: English
+    zh-CN: 中文（简体）
   registrations:
     new:
       email_placeholder: name@example.com
@@ -62,3 +67,7 @@ en:
         update:
           failure: Failed to update password.
           success: Password updated successfully.
+    preferences:
+      update:
+        failure: Failure
+        success: Success
