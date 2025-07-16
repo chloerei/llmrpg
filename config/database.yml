@@ -27,13 +27,13 @@ default: &default
 
 development:
   <<: *default
-  database: roleplay_development
+  database: llmrpg_development
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: roleplay
+  #username:llmrpg
 
   # The password associated with the PostgreSQL role (username).
   #password:
@@ -61,7 +61,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: roleplay_test
+  database: llmrpg_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -86,18 +86,18 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: roleplay_production
-    username: roleplay
-    password: <%= ENV["ROLEPLAY_DATABASE_PASSWORD"] %>
+    database: llmrpg_production
+    username: llmrpg
+    password: <%= ENV["llmrpg_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: roleplay_production_cache
+    database: llmrpg_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: roleplay_production_queue
+    database: llmrpg_production_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: roleplay_production_cable
+    database: llmrpg_production_cable
     migrations_paths: db/cable_migrate
