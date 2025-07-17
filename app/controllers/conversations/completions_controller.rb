@@ -22,32 +22,28 @@ class Conversations::CompletionsController < Conversations::BaseController
 
     messages = []
 
-    character_description = @conversation.room.characters.map do |character|
+    character_prompts = @conversation.room.characters.map do |character|
       <<~EOF
-        name: #{character.name}
+        ### #{character.name}
 
-        description: #{character.description}
+        #{character.prompt}
       EOF
     end.join("\n\n")
 
     messages << {
       role: "user",
       content: <<~EOF
-        You are a role playing assistant in a chat room.
+        You are a role-playing assistant in a chat room.
 
         Use Markdown format.
 
-        ## Room description
+        ## Room
 
-        #{@conversation.room.description}
+        #{@conversation.room.prompt}
 
-        ## Conversation description
+        ## Characters
 
-        #{@conversation.description}
-
-        ## Characters description
-
-        #{character_description}
+        #{character_prompts}
       EOF
     }
 

@@ -46,7 +46,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
   create_table "characters", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.string "name", null: false
-    t.text "description", null: false
+    t.text "prompt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_characters_on_user_id"
@@ -55,8 +55,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
   create_table "conversations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "room_id", null: false
-    t.string "title", default: "", null: false
-    t.text "description", default: "", null: false
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_conversations_on_room_id"
@@ -87,8 +86,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_072201) do
 
   create_table "rooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
-    t.string "name"
-    t.string "description"
+    t.string "name", null: false
+    t.text "prompt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"

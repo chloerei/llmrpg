@@ -4,7 +4,7 @@ class CreateCharacters < ActiveRecord::Migration[8.0]
       t.references :user, null: false, foreign_key: true, type: :uuid
 
       t.string :name, null: false
-      t.text :description, null: false
+      t.text :prompt
 
       t.timestamps
     end

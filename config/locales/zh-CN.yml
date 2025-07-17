@@ -20,7 +20,6 @@ zh-CN:
     create_room: 创建房间
     current_password: 当前密码
     delete: 删除
-    description: 描述
     edit: 编辑
     edit_character: 编辑角色
     edit_room: 编辑房间
@@ -41,6 +40,7 @@ zh-CN:
     play_as_character: 扮演角色
     playing: 扮演中
     preference: 偏好设置
+    prompt: 提示词
     remove_member: 移除成员
     reset_password: 重置密码
     rooms: 房间

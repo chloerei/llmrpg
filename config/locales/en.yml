@@ -20,7 +20,6 @@ en:
     create_room: Create room
     current_password: Current password
     delete: Delete
-    description: Description
     edit: Edit
     edit_character: Edit character
     edit_room: Edit room
@@ -41,6 +40,7 @@ en:
     play_as_character: Play as character
     playing: Playing
     preference: Preference
+    prompt: Prompt
     remove_member: Remove member
     reset_password: Reset password
     rooms: Rooms

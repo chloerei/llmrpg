@@ -15,14 +15,14 @@
 
   <fieldset class="fieldset">
     <legend class="fieldset-legend">
-      <%= t "general.description" %>
+      <%= t "general.prompt" %>
     </legend>
 
-    <%= form.text_area :description, class: "textarea", rows: 3 %>
+    <%= form.text_area :prompt, class: "textarea", rows: 3 %>
 
-    <% if form.object.errors.include?(:description) %>
+    <% if form.object.errors.include?(:prompt) %>
       <div class="text-error text-sm">
-        <%= form.object.errors[:description].first %>
+        <%= form.object.errors[:prompt].first %>
       </div>
     <% end %>
   </fieldset>
