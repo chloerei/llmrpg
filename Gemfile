@@ -41,7 +41,7 @@ gem "image_processing", "~> 1.2"
 
 gem "openai", "~> 0.5.0"
 
-gem "commonmarker", "~> 0.23.11"
+gem "commonmarker", "~> 2.3.1"
 
 gem "pagy", "~> 9.3"
 
