@@ -8,16 +8,12 @@
   }
 %>
 
-<% if character.avatar.attached? %>
-  <div class="avatar">
-    <div class="<%= size_to_class[size] %> rounded-full">
+<div class="avatar">
+  <div class="<%= size_to_class[size] %> rounded-full">
+    <% if character.avatar.attached? %>
       <%= image_tag character.avatar.variant(:thumb) %>
-    </div>
+    <% else %>
+      <%= image_tag "icon.png" %>
+    <% end %>
   </div>
-<% else %>
-  <div class="avatar avatar-placeholder">
-    <div class="bg-base-300 text-base-content <%= size_to_class[size] %> rounded-full">
-      <span class="text-xl"><%= (character.name || "N")[0] %></span>
-    </div>
-  </div>
-<% end %>
+</div>
