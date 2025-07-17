@@ -6,7 +6,7 @@
 
     <%= render "shared/avatar", character: character, size: :large %>
 
-    <%= form.file_field :avatar, class: "file-input" %>
+    <%= form.file_field :avatar, class: "file-input", direct_upload: true %>
   </fieldset>
 
   <fieldset class="fieldset">
