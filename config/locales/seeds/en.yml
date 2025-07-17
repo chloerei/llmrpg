@@ -1,0 +1,18 @@
+---
+en:
+  seeds:
+    character:
+      name: Assistant
+      prompt: An AI assistant that can answer questions and provide help.
+    conversation:
+      title: First Conversation
+    message:
+      content: |
+        Hello! I am your AI assistant.
+
+        LLMRPG is a large language model role-playing tool designed to provide an interesting conversational experience. Here you can [add characters](/characters/new), [create chat rooms](/rooms/new), and then chat with AI-driven characters.
+
+        Send your first message now to start the conversation!
+    room:
+      name: Assistant
+      prompt: A chat room for the AI assistant where users can talk to the assistant.

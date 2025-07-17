@@ -1,0 +1,18 @@
+---
+zh-CN:
+  seeds:
+    character:
+      name: 小助手
+      prompt: 一个 AI 助手，可以回答问题和提供帮助。
+    conversation:
+      title: 初次对话
+    message:
+      content: |
+        你好！我是你的 AI 助手。
+
+        LLMRPG 是一个基于大语言模型角色扮演工具，旨在提供一个有趣的对话体验。在这里你可以[添加角色](/characters/new)，[创建聊天室](/rooms/new)，然后与 AI 角色进行对话。
+
+        现在就发出你的第一个消息来开始对话吧！
+    room:
+      name: 小助手
+      prompt: 一个 AI 助手的聊天室，用户可以在这里与助手进行对话。

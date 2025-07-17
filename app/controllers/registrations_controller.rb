@@ -13,6 +13,7 @@ class RegistrationsController < ApplicationController
 
     if @user.save
       start_new_session_for(@user)
+      GenerateUserSeedDataJob.perform_now(@user)
       redirect_to after_authentication_url
     else
       flash.now[:alert] = t(".failure")
