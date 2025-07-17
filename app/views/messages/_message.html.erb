@@ -15,7 +15,7 @@
       <%= message.character.name %>
     </div>
   <% end %>
-  <div class="chat-bubble" data-message-target="content">
+  <div class="chat-bubble prose" data-message-target="content">
     <% if message.pending? and message.content.blank? %>
       <span class="loading loading-dots loading-sm"></span>
     <% end %>

@@ -5,6 +5,7 @@
 @source "../../views";
 
 @plugin "daisyui";
+@plugin "@tailwindcss/typography";
 
 @import "./tom-select";
 

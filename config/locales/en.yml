@@ -31,6 +31,7 @@ en:
     loading: Loading...
     locale: Locale
     members: Members
+    message: Message
     name: Name
     new_character: New character
     new_password: New password
