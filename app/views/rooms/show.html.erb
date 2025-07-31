@@ -2,10 +2,7 @@
   <input type="checkbox" id="history-drawer" class="drawer-toggle">
 
   <div class="drawer-content">
-    <div class="flex flex-col h-screen"
-      data-controller="conversation"
-      data-conversation-completion-url-value="<%= conversation_completion_path(@conversation) %>"
-      >
+    <div class="flex flex-col h-screen" data-controller="conversation">
       <div class="navbar shadow-xs bg-base-100 flex-0">
         <div class="flex-none">
           <a href="<%= rooms_path %>" class="btn btn-ghost btn-square">

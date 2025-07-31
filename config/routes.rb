@@ -20,10 +20,6 @@ Rails.application.routes.draw do
 
   resources :conversations, only: [ :destroy ] do
     resources :messages, only: [ :create ]
-
-    scope module: :conversations do
-      resource :completion, only: [ :create ]
-    end
   end
 
   namespace :settings do
