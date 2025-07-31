@@ -12,6 +12,8 @@ class Message < ApplicationRecord
     completed: 1
   }
 
+  broadcasts_to :conversation
+
   def to_openai_message
     prefix = character ? "#{character.name}: " : ""
 

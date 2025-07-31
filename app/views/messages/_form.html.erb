@@ -1,0 +1,5 @@
+<%# locals: (message:) %>
+
+<%= form_with model: message, url: conversation_messages_path(message.conversation), html: { id: dom_id(message, :form) } do |form| %>
+  <%= form.text_field :content, class: "input w-full", placeholder: t("general.message"), autocomplete: "off" %>
+<% end %>

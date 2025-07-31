@@ -5,7 +5,7 @@ import "./controllers"
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
 
-Turbo.StreamActions.message_append  = function () {
+Turbo.StreamActions.message_chunk  = function () {
   this.targetElements.forEach((element) => {
     element.dataset.messageContentValue = (element.dataset.messageContentValue || "") + this.templateContent.textContent
   })

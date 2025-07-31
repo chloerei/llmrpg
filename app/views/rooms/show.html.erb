@@ -84,9 +84,7 @@
       <div class="flex-0">
         <div class="max-w-3xl mx-auto p-4">
           <div class="card bg-base-300 p-4">
-            <form data-conversation-target="form" data-action="submit->conversation#completion:prevent">
-              <input type="text" name="message[content]" class="input w-full" autocomplete="off" placeholder="<%= t("general.message") %>">
-            </form>
+            <%= render "messages/form", message: @conversation.messages.new %>
           </div>
         </div>
       </div>
@@ -115,3 +113,5 @@
     </div>
   </div>
 </div>
+
+<%= turbo_stream_from @conversation %>
