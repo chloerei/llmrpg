@@ -17,6 +17,13 @@ export default class extends Controller {
 
   renderContent() {
     if (this.contentValue.length > 0) {
+      marked.use({
+        renderer: {
+          del(token) {
+            return token.raw
+          }
+        }
+      })
       const htmlContent = marked.parse(this.contentValue)
       this.contentTarget.innerHTML = DOMPurify.sanitize(htmlContent)
     }

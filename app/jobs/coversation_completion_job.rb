@@ -21,7 +21,7 @@ class CoversationCompletionJob < ApplicationJob
       content: <<~EOF
         You are a role-playing assistant in a chat room.
 
-        Use CommonMark format.
+        Use Markdown.
 
         ## Room
 
