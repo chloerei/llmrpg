@@ -74,8 +74,8 @@ class CoversationCompletionJob < ApplicationJob
       character_message.save
     end
 
-    if @conversation.title.blank?
-      GenerateConversationTitleJob.perform_later(@conversation)
+    if conversation.title.blank?
+      GenerateConversationTitleJob.perform_later(conversation)
     end
   end
 end
