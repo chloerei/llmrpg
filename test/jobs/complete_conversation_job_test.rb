@@ -1,6 +1,6 @@
 require "test_helper"
 
-class CoversationCompletionJobTest < ActiveJob::TestCase
+class CompleteConversationJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end

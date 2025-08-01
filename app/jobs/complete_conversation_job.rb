@@ -1,4 +1,4 @@
-class CoversationCompletionJob < ApplicationJob
+class CompleteConversationJob < ApplicationJob
   queue_as :default
 
   def perform(conversation, message)

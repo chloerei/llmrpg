@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
 
     if @message.save
       message = @conversation.messages.new
-      CoversationCompletionJob.perform_later(@conversation, @message)
+      CompleteConversationJob.perform_later(@conversation, @message)
       render turbo_stream: turbo_stream.replace(helpers.dom_id(message, :form), partial: "messages/form", locals: { message: message })
     else
       render turbo_stream: turbo_stream.replace(helpers.dom_id(@message, :form), partial: "messages/form", locals: { message: @message })
