@@ -1,7 +1,5 @@
-name: "llmrpg"
-
 services:
-  rails-app:
+  web:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile

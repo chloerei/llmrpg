@@ -1,9 +1,9 @@
 // For format details, see https://containers.dev/implementors/json_reference/.
 // For config options, see the README at: https://github.com/devcontainers/templates/tree/main/src/ruby
 {
-  "name": "llmrpg",
+  "name": "llmrpg devcontainer",
   "dockerComposeFile": "compose.yaml",
-  "service": "rails-app",
+  "service": "web",
   "workspaceFolder": "/rails",
 
   // Features to add to the dev container. More info: https://containers.dev/features.
@@ -15,7 +15,7 @@
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [3000, 5432],
+  "forwardPorts": [3000],
 
   // Configure tool-specific properties.
   // "customizations": {},

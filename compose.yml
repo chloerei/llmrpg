@@ -1,0 +1,27 @@
+name: llmrpg
+
+services:
+  web:
+    build: .
+    depends_on:
+      - postgres
+    volumes:
+      - storage:/rails/storage
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432
+      FORCE_SSL: "false"
+    env_file: .env
+    ports:
+      - "8080:80"
+
+  postgres:
+    image: postgres:17
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  storage:
+  postgres-data:
