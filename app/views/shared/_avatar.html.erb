@@ -10,10 +10,6 @@
 
 <div class="avatar">
   <div class="<%= size_to_class[size] %> rounded-full">
-    <% if character.avatar.attached? %>
-      <%= image_tag character.avatar.variant(:thumb) %>
-    <% else %>
-      <%= image_tag "icon.png" %>
-    <% end %>
+    <img src="<%= character_avatar_url(character) %>" alt="avatar">
   </div>
 </div>

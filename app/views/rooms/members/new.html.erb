@@ -19,7 +19,7 @@
       </legend>
       <div
         data-controller="character-select"
-        data-character-select-options-value="<%= @room.user.characters.where.not(id: @room.character_ids).map { |character| { id: character.id, name: character.name, avatar_url: url_for(character.avatar.variant(:thumb)) } }.to_json %>"
+        data-character-select-options-value="<%= @room.user.characters.where.not(id: @room.character_ids).map { |character| { id: character.id, name: character.name, avatar_url: character_avatar_url(character) } }.to_json %>"
       >
         <select name="character_ids[]" data-character-select-target="input" multiple></select>
       </div>
