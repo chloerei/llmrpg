@@ -2,7 +2,7 @@ name: llmrpg
 
 services:
   web:
-    build: .
+    image: ghcr.io/chloerei/llmrpg:latest
     depends_on:
       - postgres
     volumes:
