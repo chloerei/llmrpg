@@ -9,12 +9,14 @@ primary_region = "hkg"
   strategy = "bluegreen"
 
 [env]
+  HTTP_PORT = 8080
+  SOLID_QUEUE_IN_PUMA = true
 
 [processes]
-  web = "./bin/rails server"
+  web = "./bin/thrust ./bin/rails server"
 
 [http_service]
-  internal_port = 3000
+  internal_port = 8080
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
