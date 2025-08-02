@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LLMRPG is role-playing game (RPG) using large language models (LLMs). You can define characters and chat with them.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- Custom character.
+- Play as character.
+- Multiple characters chat.
 
-* System dependencies
+## Demo
 
-* Configuration
+https://app.llmrpg.com
 
-* Database creation
+## Self Hosting
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Document: https://github.com/chloerei/llmrpg/wiki
