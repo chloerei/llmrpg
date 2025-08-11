@@ -51,7 +51,7 @@ class CompleteConversationJob < ApplicationJob
           role: "user",
           content: "Continue conversation as #{character.name}, without character name prefix."
         } ],
-        model: "deepseek-chat",
+        model: ENV["OPENAI_MODEL"],
       )
 
       openai_stream.each do |chunk|
